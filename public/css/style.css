@@ -1,0 +1,425 @@
+/*------------- BODY-------------- */
+body {
+	margin:0px;
+	padding: 0px;
+	
+}
+
+.body-log {
+	width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    background-image: url("../images/background-image.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+    
+}
+
+
+
+/*--------------------HEADER------------------------*/
+a {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+
+.header-log {
+	background-image: url("../images/background-light-texture.jpg");
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	height: 96px;
+	background-color: white;
+}
+
+/*HEADER/GAUCHE*/
+.left-head {
+	width: 25%;
+}
+
+nav {
+	width: 50%;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0 auto;
+}
+	
+nav a {
+	text-decoration: none;
+}
+	
+.burger {
+	font-size: 8vh;
+	color: black;
+	float:left;
+}
+	
+.downmenu {
+	display: none;
+	box-shadow: 0px 1px 2px #CCC;
+	background-color: rgba(208, 215, 222, 0.5);
+	border-radius: 5px;
+	position: fixed;
+	top: 80px;
+	text-align: initial;
+	padding: 0;
+}
+
+nav>ul li{
+	padding: 10px 20px;
+}
+	
+nav>ul li:hover .downmenu {
+	display: block;
+	z-index: 1;
+}
+
+.downmenu li:hover{
+	background-color: rgb(146, 171, 212);
+}
+	
+/*HEADER/CENTRE*/
+.center-head img {
+	width: 100px;
+	
+}
+
+/*HEADER/DROITE*/
+.right-head {
+	width: 25%;
+	display: inline;
+	text-align: right;
+}
+
+.right-head img {
+	margin: 0 15px;
+	width: 13%;
+}
+
+.caption > div{
+	display: flex;
+ }
+
+.caption > div:first-child > div:first-child{
+	flex-basis: 10%;
+}
+
+.caption > div:nth-child(2) > div:first-child{
+	flex-basis: 20%;
+}
+
+.caption > div:last-child > div:first-child{
+	flex-basis: 30%;
+}
+
+/* -------------- MAIN PROFILE -------------- */
+.profile {
+	display:flex;
+	flex-wrap: wrap;
+	background-image: url("../images/background-texture.jpg");
+	background-attachment: scroll;
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+}
+
+.cover-photo {
+	width: 80%;
+	height: 350px;
+	margin: 3% 10% 0% 10%;
+	background-image: url("../images/banner-picture.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+.profile-info {
+	display: flex;
+	width: 100%;
+	height: 250px;
+	justify-content: space-evenly;
+	margin-right: 30%;
+}
+
+.profile-picture {
+	height: 250px;
+	width:250px;
+	background-image: url("../images/profile-picture.jpg");
+	background-position: center;
+	background-size: cover;
+	align-self: flex-start;
+	border-radius: 50%;
+	margin: -60px;
+	margin-left: 15%;
+}
+
+.profile-name {
+	font-size: 2vh;
+	text-align: center;
+
+}
+
+.profile-name h1 {
+	font-size: 8vh;
+	margin: 0 0 0 0;
+}
+
+#badge {
+	color:#93687D;
+	font-size: 4vh;
+}
+
+#title {
+	color: #93687D;
+	font-size: 3vh;
+}
+
+.underline {
+	width: 70%;
+	border-bottom: 2px solid black;
+}
+
+
+
+/* -------------- PROFILE WALL -------------- */
+.wall h2 {text-align: center;}
+
+
+.wall {
+	display:flex;
+	justify-content: flex-start;
+}
+
+.user-post {
+	margin: 3% 0 3% 20%;
+	width: 33%;
+	background-color: #FFFAFA;
+	padding:1%;
+	border-radius: 5px;
+}
+
+.pinned-post {
+	margin: 3% 20% 7% 5%;
+	width: 20%;
+	background-color: #FFFAFA;
+	padding: 1%;
+	border-radius: 5px;
+}
+
+.date {
+	color: #CCC;
+	text-align: right;
+}
+
+.comment-line {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+
+}
+
+input[placeholder="Write comment..."] {
+	font-size: 2vh;
+	background-color: #D0D7DE;
+	border-radius: 0px;
+	margin-right: 10px;
+	border-radius: 5px;
+}
+
+input[type="Submit"] {
+	display: inline;
+	width: 50px;
+	border-radius: 5px;
+	margin-right: 10px;
+}
+
+#comment-post {
+	width: 100%;
+	height: 40px;
+}
+
+#comment-pinned {
+	width: 80%;
+	height: 40px;
+}
+
+#wall-icons {
+	margin-right: 10px;
+}
+
+.lil-post {
+	height: 25px;
+}
+
+.username, p, h2,h3 {
+	color: #002a2b;
+}
+
+.comment {
+	display:flex;
+	width: 70%;
+}
+
+
+/* ------------PAGES CONNEXION & INSCRIPTION-------------- */
+.flexbox-container {
+    display: flex;
+    justify-content: space-evenly;
+	align-items: center;
+    min-height: 500px;
+}
+
+#connexion .flexbox-container {
+	justify-content: center;
+	margin:auto;
+}
+
+/*BODY/GAUCHE/INSCRIPTION*/
+#catchwords {
+    text-align: left;
+	margin-right: 10px;
+    text-transform: uppercase;
+    font-family: "made_sunflower";
+}
+
+#catchwords :first-child {
+
+    font-size: 2em;
+}
+
+#catchwords :nth-child(2) {
+    font-size: 3em;
+}
+
+#catchwords :nth-child(3) {
+    font-size: 3em;
+}
+
+/*BODY/FORMULAIRE*/
+.form-container{
+    border-radius: 15px;
+    background-color: rgba(208, 215, 222, 0.5);
+    border-radius: 15px;
+    min-width: 32%;
+	margin-right: 40px;
+}
+
+#connexion .form-container {
+    width: 35%;
+	padding-top: 30px;
+}
+
+.verb {
+    color: rgba(161, 65, 41, 1);
+    margin:0;
+}
+
+.form-container input {
+    margin-bottom: 25px;
+    background-color: rgba(235, 235, 235, 1);
+    min-width: 80%;
+    border-radius: 5px;
+    font-family: "made_sunflower";
+}
+
+.form-container form {
+    padding: 20px;
+}
+
+.form-container p{
+font-weight: light;
+}
+
+button{
+    width:120px ;
+    height:30px ;
+    color:white ;
+    background-color:#6C93AB ;
+    border-radius:5px;
+}
+
+.form-link{
+    margin-top:30px;
+    font-size: 10px;
+}
+
+
+
+/*--------------------------------------------------------*/
+/*FOOTER*/
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+	height: 154px;
+	width: 100%;
+    background-color: rgba(208, 215, 222, 0.7);
+}
+
+#inscription .footer-container, #connexion .footer-container{
+	position:fixed;
+	bottom:0;
+}
+
+.left-foot,
+.right-foot {
+    min-width: 45%;
+    padding: 15px;
+}
+
+.right-foot ul,
+.right-foot a {
+    text-align: center;
+    list-style-type: none;
+}
+
+/*FOOTER/GAUCHE*/
+.left-foot {
+    text-align: left;
+}
+
+.left-foot h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.left-foot p {
+    font-size: 10px;
+}
+
+.left-foot button {
+    background-color: black;
+    color: white;
+}
+
+.left-foot h2,
+.left-foot p,
+.left-foot form {
+    margin-bottom: 10px;
+}
+
+.left-foot p {
+    color: #6C93AB;
+}
+
+/*FOOTER/DROITE*/
+.right-foot {
+    text-align: right;
+	padding-top: 20px;
+}
+
+.right-foot ul {
+    margin-top: 55px;
+}
+
+.right-foot li {
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 12px;
+}

@@ -1,0 +1,39 @@
+<main id="inscription">
+  <div class="flexbox-container">
+    <div class="container caption">
+      <div class="my-4">
+        <div>&nbsp;</div>
+        <div class="display-5">SEEK</div>
+      </div>
+      <div class="my-4">
+        <div>&nbsp;</div>
+        <div class="display-3">DISCOVER</div>
+      </div>
+      <div class="my-4">
+        <div>&nbsp;</div>
+        <div class="display-1">CONTRIBUTE</div>
+      </div>
+    </div>
+      <div class="form-container">
+          <div class="form-title">
+              <h1 class="verb">S'inscrire</h1>
+          </div>
+          <form action="/signup" method="post">
+              <div class="mb-3">
+                  <input type="text" name="name" id="name" class="form-control" placeholder="Nom" required>
+              </div>
+              <div class="mb-3">
+                  <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="mb-3">
+                  <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" required>
+              </div>
+              <div class="mb-3">
+                  <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirmer mot de passe" required>
+              </div>
+              <button type="submit" id="submit" class="btn btn-primary mb-3 w-100 h-100">S'inscrire</button>
+          </form>
+          <div class="form-link"><p>Déjà inscrit(e) ? <a href="/">S’identifier</a></p></div> 
+      </div>
+  </div>
+</main>
