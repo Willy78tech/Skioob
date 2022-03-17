@@ -37,3 +37,17 @@
       </div>
   </div>
 </main>
+< script >
+  fonction  check_pass () {
+    if ( document . getElementById ( ' mot de passe ' ). valeur  ==
+            documenter . getElementById ( ' password_confirmation ' ). valeur ) {
+        documenter . getElementById ( ' soumettre ' ). désactivé  =  faux ;
+        documenter . getElementById ( ' message ' ). style . couleur  =  ' vert ' ;
+        documenter . getElementById ( ' message ' ). innerHTML  =  ' correspondance ' ;
+    } sinon {
+        documenter . getElementById ( ' soumettre ' ). désactivé  =  vrai ;
+        documenter . getElementById ( ' message ' ). style . couleur  =  ' rouge ' ;
+  documenter . getElementById ( ' message ' ). innerHTML  =  ' ne correspond pas ' ;
+    }
+}
+</ script >
