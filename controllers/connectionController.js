@@ -22,7 +22,7 @@ exports.connect = (req, res) => {
             //API return un token et on le sauvegarde
             if (!!token){
                 localStorage.setItem("ACCESS_TOKEN", token);
-                res.redirect(`/profile/${token}`);
+                res.redirect("/profile");
                 }
             })
         .catch((error) => {
@@ -47,10 +47,8 @@ exports.index = (req, res) => {
 
 //affiche la page profil
 exports.showProfile = (req, res) => {
-    const tokenParam = req.params.token;
     const token = localStorage.getItem("ACCESS_TOKEN");
-    //si token de url coïncide avec le token sauvegardé dans localstorage, on affiche la page
-    if(!!tokenParam && tokenParam === token){
+    if(!!token){
 
         var config = {
           method: 'get',
@@ -60,7 +58,6 @@ exports.showProfile = (req, res) => {
         
         axios(config)
         .then((result) => {
-            console.log(result.data)
             const userData = {
                 name: result.data.name,     
                 email: result.data.email
@@ -76,7 +73,7 @@ exports.showProfile = (req, res) => {
                 eMessage: error.response.data,
                 title: "API erreur"
             });
-        })       
+        });       
     }
     //sinon on affiche la page d'erreur
     else
