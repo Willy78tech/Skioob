@@ -11,7 +11,7 @@ exports.signupPage = (req, res) => {
     res.render("signup", {
         title: "Inscription"
     });
-}
+};
 
 //crée un nouveau user en utilisant API
 exports.signup = (req, res) => {
