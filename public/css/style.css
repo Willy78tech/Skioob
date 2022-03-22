@@ -128,7 +128,8 @@ nav>ul li:hover .downmenu {
     display: flex;
     width: 100%;
     height: 300px;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    margin: 0px 50px 0 50px;
 }
 
 .profile-picture {
@@ -138,31 +139,16 @@ nav>ul li:hover .downmenu {
     background-position: center;
     background-size: cover;
     border-radius: 50%;
-    margin: -60px;
-    margin-left: 5%;
+    margin: -60px 0px 0px 40px;
 }
 
 .profile-name {
-    font-size: 2vh;
     text-align: right;
 }
 
 .profile-name h1 {
-    font-size: 8vh;
-    margin: 0;
-}
-
-@media (max-width: 620px) {
-    .profile-picture {
-        height: 180px;
-        width: 200px;
-        margin: -30px;
-        margin-left: 10%;
-    }
-    .profile-name h1 {
-        font-size: 4vh;
-        margin-left: 100px;
-    }
+    font-size: 7vh;
+    margin: 15px 0 5px;
 }
 
 #badge {
@@ -173,6 +159,26 @@ nav>ul li:hover .downmenu {
 #title {
     color: #93687D;
     font-size: 3vh;
+}
+
+@media (max-width: 700px) {
+    .profile-picture {
+        height: 150px;
+        width: 150px;
+        margin: -30px 0px 0px 3px;
+    }
+    .profile-name h1 {
+        font-size: 4vh;
+    }
+    #badge {
+        font-size: 2.5vh;
+    }
+    #title {
+        font-size: 2vh;
+    }
+    .profile-info {
+        height: 150px;
+    }
 }
 
 .underline {
@@ -201,14 +207,13 @@ nav>ul li:hover .downmenu {
 
 .text-post {
     padding: 30px;
-    ;
 }
 
 .user-post {
     margin: 3% 15px 20px 15px;
     width: 350px;
     background-color: #FFFAFA;
-    padding: 1%;
+    padding: 10px;
     border-radius: 5px;
 }
 
@@ -218,7 +223,8 @@ nav>ul li:hover .downmenu {
 }
 
 .comment-line {
-    align-content: flex-end;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 input[placeholder="Write comment..."] {
@@ -230,10 +236,9 @@ input[placeholder="Write comment..."] {
 }
 
 input[type="Submit"] {
-    display: inline;
     width: 50px;
     border-radius: 5px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 #comment-post {
@@ -247,7 +252,7 @@ input[type="Submit"] {
 }
 
 #wall-icons {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .lil-post {
@@ -372,6 +377,7 @@ button {
     height: 400px;
     min-width: 35%;
     padding: 30px;
+    border-radius: 20px;
 }
 
 
