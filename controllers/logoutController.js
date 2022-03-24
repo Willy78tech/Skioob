@@ -1,9 +1,6 @@
-"use strict"
-
-const LocalStorage = require('node-localstorage').LocalStorage;
-const localStorage = new LocalStorage('../store');
+"use strict";
 
 exports.logout = (req, res) => {
-    localStorage.clear();
+    res.app.locals.apiToken = null;
     res.redirect("/");
-}
+};

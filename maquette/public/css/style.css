@@ -1,0 +1,501 @@
+/*------------- BODY-------------- */
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.body-log {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    background-image: url("../images/background-image.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+}
+
+
+/*--------------------HEADER------------------------*/
+
+a {
+    color: #221c1c;
+    font-weight: bold;
+}
+
+.header-log {
+    background-image: url("../images/background-light-texture.jpg");
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 96px;
+    background-color: white;
+}
+
+
+/*HEADER/GAUCHE*/
+
+.left-head {
+    width: 25%;
+}
+
+nav {
+    width: 50%;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0 auto;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+.burger {
+    font-size: 8vh;
+    color: rgb(22, 22, 22);
+    float: left;
+}
+
+.downmenu {
+    display: none;
+    background-color: #ffffff;
+    width: 150px;
+    border-radius: 15px;
+    position: fixed;
+    padding: 0;
+}
+
+nav:hover .downmenu {
+    display: block;
+    z-index: 1;
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav li {
+    padding: 15px 20px;
+    text-align: left;
+    transition: all 1s;
+}
+
+i {
+    margin-right: 15px;
+}
+
+ul.downmenu > li:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+ul.downmenu > li:first-child{
+    border-radius: 15px 15px 0 0;
+}
+ul.downmenu > li:last-child{
+    border-radius: 0 0 15px 15px;
+}
+
+
+/*HEADER/CENTRE*/
+
+.center-head img {
+    width: 100px;
+}
+
+
+/*HEADER/DROITE*/
+
+.right-head {
+    width: 25%;
+    display: inline;
+    text-align: right;
+}
+
+.right-head img {
+    margin: 0 15px;
+    width: 30px;
+}
+
+@media (max-width: 620px) {
+    .right-head img {
+        margin: 0 10px;
+        width: 20px;
+    }
+}
+
+
+/* -------------- MAIN PROFILE -------------- */
+
+.profile {
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url("../images/background-texture.jpg");
+    background-attachment: scroll;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.cover-photo {
+    width: 80%;
+    height: 350px;
+    margin: 3% 10% 0% 10%;
+    background-image: url("../images/banner-picture.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.profile-info {
+    display: flex;
+    width: 100%;
+    height: 300px;
+    justify-content: space-around;
+    margin: 0px 50px 0 50px;
+}
+
+.profile-picture {
+    height: 250px;
+    width: 250px;
+    background-image: url("../images/profile-picture.jpg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    margin: -60px 0px 0px 40px;
+}
+
+.profile-name {
+    text-align: right;
+}
+
+.profile-name h1 {
+    font-size: 7vh;
+    margin: 15px 0 5px;
+}
+
+#badge {
+    color: #93687D;
+    font-size: 4vh;
+}
+
+#title {
+    color: #93687D;
+    font-size: 3vh;
+}
+
+@media (max-width: 700px) {
+    .profile-picture {
+        height: 150px;
+        width: 150px;
+        margin: -30px 0px 0px 3px;
+    }
+    .profile-name h1 {
+        font-size: 4vh;
+    }
+    #badge {
+        font-size: 2.5vh;
+    }
+    #title {
+        font-size: 2vh;
+    }
+    .profile-info {
+        height: 150px;
+    }
+}
+
+.underline {
+    width: 70%;
+    border-bottom: 2px solid black;
+}
+
+
+/* -------------- PROFILE WALL -------------- */
+
+.wall h2 {
+    text-align: left;
+}
+
+.wall {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+@media (max-width: 620px) {
+    .wall {
+        display: block;
+    }
+}
+
+.text-post {
+    padding: 30px;
+}
+
+.user-post {
+    margin: 3% 15px 20px 15px;
+    width: 350px;
+    background-color: #FFFAFA;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.date {
+    color: #CCC;
+    text-align: right;
+}
+
+.comment-line {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+input[placeholder="Write comment..."] {
+    font-size: 2vh;
+    background-color: #D0D7DE;
+    border-radius: 0px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+input[type="Submit"] {
+    width: 50px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+#comment-post {
+    width: 80%;
+    height: 20px;
+}
+
+#comment-pinned {
+    width: 80%;
+    height: 20px;
+}
+
+#wall-icons {
+    margin-right: 5px;
+}
+
+.lil-post {
+    height: 25px;
+}
+
+.username,
+p,
+h2 {
+    color: #002a2b;
+}
+
+.comment {
+    display: flex;
+    width: 70%;
+}
+
+
+/* ------------PAGES CONNEXION & INSCRIPTION-------------- */
+
+.flexbox-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 501px;
+}
+
+#connexion .flexbox-container {
+    justify-content: center;
+    margin: auto;
+}
+
+
+/*BODY/GAUCHE/INSCRIPTION*/
+
+#catchwords {
+    text-align: left;
+    margin-right: 10px;
+    text-transform: uppercase;
+    font-family: "made_sunflower";
+}
+
+#catchwords :first-child {
+    font-size: 2em;
+}
+
+#catchwords :nth-child(2) {
+    font-size: 2.5em;
+}
+
+#catchwords :nth-child(3) {
+    font-size: 3em;
+}
+
+@media (max-width: 620px) {
+    #catchwords :first-child {
+        font-size: 1.5em;
+    }
+    #catchwords :nth-child(2) {
+        font-size: 1.75em;
+    }
+    #catchwords :nth-child(3) {
+        font-size: 2em;
+    }
+}
+
+
+/*BODY/FORMULAIRE*/
+
+.form-container {
+    border-radius: 15px;
+    background-color: rgba(208, 215, 222, 0.5);
+    border-radius: 15px;
+    min-width: 32%;
+}
+
+#connexion .form-container {
+    width: 35%;
+    padding: 10px;
+}
+
+.form-title {
+    color: rgba(161, 65, 41, 1);
+    font-size: 20px;
+}
+
+.form-container input {
+    margin-bottom: 25px;
+    background-color: rgba(235, 235, 235, 1);
+    min-width: 80%;
+    height: 30px;
+    border-radius: 5px;
+    font-family: "made_sunflower";
+}
+
+.form-container form {
+    padding: 10px;
+}
+
+.form-container p {
+    font-weight: light;
+}
+
+button {
+    width: 120px;
+    height: 30px;
+    color: white;
+    background-color: #6C93AB;
+    border-radius: 5px;
+}
+
+.form-link {
+    margin-top: 30px;
+    font-size: 10px;
+}
+
+
+/* ------------PAGE ERREUR-------------- */
+
+#error-message {
+    background-color: rgba(208, 215, 222, 0.5);
+    height: 400px;
+    min-width: 35%;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+
+/*--------------------------------------------------------*/
+
+
+/*FOOTER*/
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    height: 154px;
+    background-color: rgba(208, 215, 222, 0.7);
+}
+
+#inscription .footer-container,
+#connexion .footer-container {
+    position: fixed;
+    bottom: 0;
+}
+
+.left-foot,
+.right-foot {
+    min-width: 45%;
+    padding: 15px;
+}
+
+.right-foot ul,
+.right-foot a {
+    text-align: center;
+    list-style-type: none;
+}
+
+
+/*FOOTER/GAUCHE*/
+
+.left-foot {
+    text-align: left;
+}
+
+.left-foot h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.left-foot p {
+    font-size: 10px;
+}
+
+@media (max-width: 620px) {
+    .left-foot h2 {
+        font-size: 11px;
+        text-transform: uppercase;
+    }
+    .left-foot p {
+        font-size: 9px;
+        margin-bottom: 0px;
+    }
+}
+
+.left-foot button {
+    background-color: black;
+    color: white;
+}
+
+.left-foot h2,
+.left-foot p,
+.left-foot form {
+    margin-bottom: 10px;
+}
+
+.left-foot p {
+    color: #6C93AB;
+}
+
+
+/*FOOTER/DROITE*/
+
+.right-foot {
+    text-align: right;
+    padding-top: 20px;
+}
+
+.right-foot ul {
+    margin-top: 55px;
+}
+
+.right-foot li {
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 12px;
+}
+
+@media (max-width: 620px) {
+    .right-foot ul {
+        margin-top: 25px;
+    }
+}

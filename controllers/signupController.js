@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 const axios = require("axios");
 
@@ -9,7 +9,7 @@ exports.signupPage = (req, res) => {
     res.render("signup", {
         title: "Inscription"
     });
-}
+};
 
 //crée un nouveau user en utilisant API
 exports.signup = (req, res) => {
@@ -20,7 +20,7 @@ exports.signup = (req, res) => {
     };
     
     axios.post(urlAPI, data)
-        .then((result) => {
+        .then(() => {
             //après avoir s'incrit, on va vers la page index pour se connecter
             res.redirect('/');
             })
@@ -28,6 +28,6 @@ exports.signup = (req, res) => {
             res.render("error", {
                 eMessage: error,
                 title: "API erreur"
-            })
+            });
         });
-}
+};
