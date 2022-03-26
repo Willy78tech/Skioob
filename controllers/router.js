@@ -10,6 +10,8 @@ const signupController = require("../controllers/signupController");
 
 const logoutController = require("../controllers/logoutController");
 
+const spotController = require("../controllers/spotController");
+
 router.get("/", connectionController.index);  //affiche la page de connection
 
 router.post("/login", connectionController.connect);   //se connecte en utilisant API
@@ -22,14 +24,11 @@ router.post("/signup", signupController.signup);   //crée un nouveau user en ut
 
 router.get("/logout", logoutController.logout);    //efface les données de localstorage (serveur)
 
-<<<<<<< HEAD
 router.get("/spotfeed", spotController.spotFeed);
 
 router.get("/spotform", spotController.spotForm);
 
 router.get("/spotinfo", spotController.spotInfo);
 
-=======
->>>>>>> 6d2b982b3059ff5b9963a493eb1ccfb927ac118a
 module.exports = router;
 
