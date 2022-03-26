@@ -21,10 +21,6 @@ exports.signup = (req, res) => {
     
     axios.post(urlAPI, data)
         .then(() => {
-<<<<<<< HEAD
-=======
-            req.flash('connect_msg', 'Bienvenu dans notre portal!');
->>>>>>> 6d2b982b3059ff5b9963a493eb1ccfb927ac118a
             //après avoir s'incrit, on va vers la page index pour se connecter
             res.redirect('/');
             })
