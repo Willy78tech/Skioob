@@ -1,22 +1,24 @@
-<main id="inscription">
+
+<main class="sign-background-image">
   <div class="flexbox-container">
-    <div class="container caption">
-      <div class="my-4">
-        <div>&nbsp;</div>
-        <div class="display-5">SEEK</div>
-      </div>
-      <div class="my-4">
-        <div>&nbsp;</div>
-        <div class="display-3">DISCOVER</div>
-      </div>
-      <div class="my-4">
-        <div>&nbsp;</div>
-        <div class="display-1">CONTRIBUTE</div>
+    <div class="container">
+      <div class="catchwords">
+        <div class="my-4">
+          <div class="display-3">SEEK</div>
+        </div>
+        <div class="my-4">
+          <div>&nbsp;</div>
+          <div class="display-2">DISCOVER</div>
+        </div>
+        <div class="my-4">
+          <div>&nbsp;</div>
+          <div class="display-1">CONTRIBUTE</div>
+        </div>
       </div>
     </div>
       <div class="form-container">
           <div class="form-title">
-              <h1 class="verb">S'inscrire</h1>
+              <h1 class="verb">Stay in the loop</h1>
           </div>
           <form action="/signup" method="post">
               <div class="mb-3">
@@ -32,7 +34,7 @@
                   <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirmer mot de passe" required onkeyup='check_pass();'>
                   <span id='message'></span>
               </div>
-              <button type="submit" id="submit" class="btn btn-primary mb-3 w-100 h-100">S'inscrire</button> 
+              <button type="submit" id="submit" class="btn btn-primary mb-3 w-50 h-100">S'inscrire</button> 
           </form>
           <div class="form-link"><p>Déjà inscrit(e) ? <a href="/">S’identifier</a></p></div> 
       </div>

@@ -1,8 +1,6 @@
-"use strict"
+"use strict";
 
 const axios = require("axios");
-
-const validation = require("../functions/validation");
 
 const urlAPI = "https://ski-api.herokuapp.com/signup";
 
@@ -20,24 +18,16 @@ exports.signup = (req, res) => {
         password: req.body.password,
         email: req.body.email        
     };
-    //email doit etre unique
-    if(validation.emailUnique(data.email)){
-        axios.post(urlAPI, data)
-            .then(() => {
-                //après avoir s'incrit, on va vers la page index pour se connecter
-                res.redirect('/');
-                })
-            .catch((error) => {
-                res.render("error", {
-                    eMessage: error,
-                    title: "API erreur"
-                })
+    
+    axios.post(urlAPI, data)
+        .then(() => {
+            //après avoir s'incrit, on va vers la page index pour se connecter
+            res.redirect('/');
+            })
+        .catch((error) => {
+            res.render("error", {
+                eMessage: error,
+                title: "API erreur"
             });
-    }
-    else{
-        res.render("error", {
-            eMessage: "Un utilisateur avec le meme email déjà existe! Veuillez aller sur la page de connection pour vous connecter",
-            title: "Error"
-        })
-    }
-}
+        });
+};

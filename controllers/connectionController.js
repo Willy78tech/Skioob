@@ -1,10 +1,6 @@
-"use strict"
+"use strict";
 
 const axios = require("axios");
-
-//on va y sauvegarder token et name
-const LocalStorage = require('node-localstorage').LocalStorage;
-const localStorage = new LocalStorage('../store');
 
 const apiLoginUrl = "https://ski-api.herokuapp.com/login";
 const apiTokenUrl = "https://ski-api.herokuapp.com/tokenInfo";
@@ -21,36 +17,37 @@ exports.connect = (req, res) => {
             let token = result.data.token;
             //API return un token et on le sauvegarde
             if (!!token){
-                localStorage.setItem("ACCESS_TOKEN", token);
-                res.redirect(`/profile/${token}`);
+                res.app.locals.apiToken = token;
+                res.redirect("/profile");
                 }
             })
-        .catch((error) => {
+        .catch(() => {
             res.render("error", {
                 eMessage: "Vos données ne sont pas valides ", 
                 title: "API erreur"
             });
         });
-}
+};
 
 //affiche la page profil ou le formulaire
 exports.index = (req, res) => {
-    const token = localStorage.getItem("ACCESS_TOKEN");
+
+    const token = res.app.locals.apiToken;
 
     //si user est déjà connecté, on le redérige vers la page de son profil
     if(!!token)
-        res.redirect(`/profile/${token}`);
+        res.redirect("/profile");
     //si user n'est pas connecté, on affiche la page index avec un formulaire
     else
         res.render("index", {title: "Bienvenue"}); 
-}
+};
 
 //affiche la page profil
 exports.showProfile = (req, res) => {
-    const tokenParam = req.params.token;
-    const token = localStorage.getItem("ACCESS_TOKEN");
-    //si token de url coïncide avec le token sauvegardé dans localstorage, on affiche la page
-    if(!!tokenParam && tokenParam === token){
+
+    const token = res.app.locals.apiToken;
+
+    if(!!token){
 
         var config = {
           method: 'get',
@@ -60,7 +57,6 @@ exports.showProfile = (req, res) => {
         
         axios(config)
         .then((result) => {
-            console.log(result.data)
             const userData = {
                 name: result.data.name,     
                 email: result.data.email
@@ -76,12 +72,12 @@ exports.showProfile = (req, res) => {
                 eMessage: error.response.data,
                 title: "API erreur"
             });
-        })       
+        });       
     }
     //sinon on affiche la page d'erreur
     else
         res.render("error", {title: "Interdit", eMessage: "Vous n'avez pas l'access à cette page"});
-}
+};
 
 
 

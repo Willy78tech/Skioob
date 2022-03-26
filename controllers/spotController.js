@@ -10,3 +10,10 @@ exports.spotForm = (req, res) => {
         title : "Spot Form"
     });
 };
+
+
+exports.spotInfo = (req, res) => {
+    res.render("spotinfo", {
+        title : "Spots Info"
+    });
+};
