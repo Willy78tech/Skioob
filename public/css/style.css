@@ -452,6 +452,8 @@ i {
 
 .spot-icon div { margin-left: 15%;}
 
+.spot-img {margin: 0 30% 0 30%;}
+
 .spot-info {
     width: 100%;
     text-align: left;
@@ -481,9 +483,6 @@ i {
     margin-bottom: 3%;
 }
 
-.spot-button {
-    
-}
 
 /*--------------------------------------------------------*/
 
@@ -521,7 +520,7 @@ i {
 
 .left-foot,
 .right-foot {
-    min-width: 35%;
+    min-width: 45%;
     padding: 15px;
 }
 
@@ -539,9 +538,8 @@ i {
 }
 
 .left-foot h2 {
-    font-size: 16px;
+    font-size: 12px;
     text-transform: uppercase;
-	color: #002A2B;
 }
 
 .left-foot p {
