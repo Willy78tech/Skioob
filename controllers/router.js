@@ -16,7 +16,7 @@ router.get("/", connectionController.index);  //affiche la page de connection
 
 router.post("/login", connectionController.connect);   //se connecte en utilisant API
 
-router.get("/profile/:token", connectionController.showProfile);   //si connecté, affiche la page profil
+router.get("/profile", connectionController.showProfile);   //si connecté, affiche la page profil
 
 router.get("/signup", signupController.signupPage); //affiche la page d'inscription
 
@@ -27,6 +27,8 @@ router.get("/logout", logoutController.logout);    //efface les données de loca
 router.get("/spotfeed", spotController.spotFeed);
 
 router.get("/spotform", spotController.spotForm);
+
+router.get("/spotinfo", spotController.spotInfo);
 
 module.exports = router;
 

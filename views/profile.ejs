@@ -1,47 +1,56 @@
-<main>
-    <div class="frost-background">
-        <div class="cover-photo"></div>
-        <div class="profile-info">
-            <div class="profile-picture"></div>
-            <div class="profile-name">
-                <h1 class="username" id="name"><%= data.name %></h1>
-                <h2><%= data.email %></h2>
-                <span id="badge">⋆ &nbsp</span><span id="title">Highest contributor</span>
+
+    <main>git status
+        
+        <div class="texture-background">
+            <div class="cover-photo"></div>
+            <div class="profile-info">
+                <div class="profile-picture"></div>
+                <div class="profile-name">
+                    <h1 class="username" id="name"><%= data.name%></h1>
+                    <h2><%= data.email %></h2>
+                    <span id="badge">⋆ &nbsp</span><span id="title">Highest contributor</span>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div class="wall">
+                <div class="user-post">
+                    <span class="date"><p class="date">POSTED dd/mm/yy</p></span>
+                    <div class="text-post">
+                        <h2>Lorem Ipsum aptent taciti sociosqu ad</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur sociosqu ad adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce
+                            nec tellus sed augue semper porta. Ipsum dolor sit ame Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        </p>
+                    </div>
+                    <div class="comment-line">
+                        <div id="wall-icons">
+                            <img src="./images/conversation.svg" height="20px">
+                            <img src="./images/heart.svg" height="20px">
+                        </div>
+                        <form class="comment">
+                            <input type="text" class="form-control" id="comment-pinned" name="comment-pinned" placeholder="Write comment...">
+                            <input type="text" value="POST" class="btn btn-secondary btn-sm lil-post">
+                        </form>
+                    </div>
+                </div>
+                <div class="user-post">
+                    <span class="date"><p class="date">POSTED dd/mm/yy</p></span>
+                    <div class="text-post">
+                        <h2>Pinned Post</h2>
+                        <p>Lorem ipsum dolor sit amet. At facilis quia quo consectetur deserunt qui rerum galisum. Id autem distinctio nam nulla internos qui provident dolores aut internos possimus.</p>
+                        <p>Consectetur adipiscing elit. Integer nec odio.</p>
+                        <p>At facilis quia quo consectetur deserunt qui rerum gali. Lorem ipsum dolor sit amet.Consectetur adipiscing elit. Integer nec odio.</p>
+                    </div>
+                    <div class="comment-line">
+                        <div id="wall-icons">
+                            <img src="./images/conversation.svg" height="20px">
+                            <img src="./images/heart.svg" height="20px">
+                        </div>
+                        <form class="comment">
+                            <input type="text" class="form-control" id="comment-pinned" name="comment-pinned" placeholder="Write comment...">
+                            <input type="text" value="POST" class="btn btn-secondary btn-sm lil-post">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="underline"></div>
-        <div class="wall">
-            <div class="user-post">
-                <span class="date"><p class="date">POSTED dd/mm/yy</p></span>
-                <h2>Lorem Ipsum aptent taciti sociosqu ad</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                </p>
-                <div class="comment-line">
-                    <div>
-                        <img src="../images/conversation.png" height="30px">
-                        <img src="../images/heart.png" height="30px">
-                    </div>
-                    <form class="comment">
-                        <input type="text" id="comment-post" name="comment-post"  class="form-control" placeholder="Write comment...">
-                        <input type="submit" class="btn btn-dark mb-3 w-100" value="POST">
-                    </form>
-                </div>
-            </div>
-            <div class="pinned-post">
-                <span class="date"><p class="date">POSTED dd/mm/yy</p></span>
-                <h3>Pinned Post</h3>
-                <p>Lorem ipsum dolor sit amet. At facilis quia quo consectetur deserunt qui rerum galisum. Id autem distinctio nam nulla internos qui provident dolores aut internos possimus.</p>
-                <div class="comment-line">
-                    <div>
-                        <img src="../images/conversation.png" height="20px">
-                        <img src="../images/heart.png" height="20px">
-                    </div>
-                    <form class="comment">
-                        <input type="text" id="comment-pinned" name="comment-pinned"  class="form-control" placeholder="Write comment...">
-                        <input type="submit" value="POST" class="btn btn-dark mb-3 w-100">
-                    </form>
-                </div>
-            </div>
-        </div>   
-    </div>
-</main>
+    </main>
