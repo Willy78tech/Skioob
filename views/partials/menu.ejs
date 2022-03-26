@@ -4,8 +4,15 @@
             <nav>
                 <ul>
                     <li class="dropdown"><a href="#" class="burger">≡</a>
+<<<<<<< HEAD
                         <ul class="downmenu">                         
                             <% if(title == "Inscription") { %>
+=======
+                        <ul class="downmenu">
+                            <% if(typeof connected !== 'undefined') { %>
+                                <li><a href="/logout">Se déconnecter</a></li>
+                            <% } else {%>
+>>>>>>> 6d2b982b3059ff5b9963a493eb1ccfb927ac118a
                                 <li><a href="/">Se connecter</a></li>
                             <% } %>
                             <% if(title == "Bienvenue") { %>
@@ -24,8 +31,13 @@
             <img src="../images/logo.png" alt="skioob-logo">
         </div>
         <div class="right-head">
+<<<<<<< HEAD
             <a href="../spotfeed"> <img src="../images/forest.png" alt="mount icon"></a>
             <a href="../profile"><img src="../images/user.png" alt="user icon"></a>
+=======
+            <img src="../images/forest.png" alt="mount-logo">
+            <a href="/profile"><img src="../images/user.png" alt="log-logo"></a>
+>>>>>>> 6d2b982b3059ff5b9963a493eb1ccfb927ac118a
         </div>
     </div>
 </header>

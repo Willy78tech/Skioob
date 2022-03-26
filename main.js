@@ -21,6 +21,27 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(express.json());
 
+//session et cookies et flash messages
+const expressSession = require("express-session");
+const cookieParser = require("cookie-parser");
+const connectFlash = require("connect-flash");
+
+app.use(cookieParser("secret_code"));
+app.use(expressSession({
+    secret: "secret_code",
+    cookie: {
+        maxAge: 4000000
+    },
+    saveUninitialized: false,
+    resave: false
+}));
+app.use(connectFlash());
+
+app.use((req, res, next) => {
+    res.locals.flashMessages = req.flash();
+    next();
+});
+
 app.set("view engine", "ejs");
 
 app.use(expressLayouts);

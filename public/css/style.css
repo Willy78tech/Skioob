@@ -73,6 +73,7 @@ nav a {
     position: fixed;
 }
 
+<<<<<<< HEAD
 nav:hover .downmenu {
     margin-top: 35px;
     display: block;
@@ -81,6 +82,16 @@ nav:hover .downmenu {
     box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.5);
     width: 160px;
     
+=======
+nav>ul li{
+	padding: 10px 20px;
+	transition: all 1s;
+}
+	
+nav>ul li:hover .downmenu {
+	display: block;
+	z-index: 1;
+>>>>>>> 6d2b982b3059ff5b9963a493eb1ccfb927ac118a
 }
 
 nav li {
@@ -88,6 +99,7 @@ nav li {
     text-align: center;
     
 }
+<<<<<<< HEAD
 
 i {
     margin-right: 15px;
@@ -107,6 +119,15 @@ i {
 }
 
 
+=======
+.downmenu > li:first-child{
+    border-radius: 5px 5px 0 0;
+}
+.downmenu > li:last-child{
+    border-radius: 0 0 5px 5px;
+}
+	
+>>>>>>> 6d2b982b3059ff5b9963a493eb1ccfb927ac118a
 /*HEADER/CENTRE*/
 
 .center-head img {
@@ -136,6 +157,7 @@ i {
 
 
 /* -------------- MAIN PROFILE -------------- */
+<<<<<<< HEAD
 
 .texture-background {
     display: flex;
@@ -154,6 +176,26 @@ i {
     background-image: url("../images/banner-picture.jpg");
     background-size: cover;
     background-position: center;
+=======
+.profile {
+	display:flex;
+	flex-wrap: wrap;
+	background-image: url("../images/background-texture.jpg");
+	background-attachment: scroll;
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+}
+
+.cover-photo {
+	width: 80%;
+	height: 300px;
+	margin: 3% 10% 0% 10%;
+	background-image: url("../images/banner-picture.jpg");
+	background-size: cover;
+	background-position: center;
+	border-radius: 15px;
+>>>>>>> 6d2b982b3059ff5b9963a493eb1ccfb927ac118a
 }
 
 .profile-info {
@@ -262,8 +304,29 @@ i {
 }
 
 .comment-line {
+<<<<<<< HEAD
     display: flex;
     justify-content: space-evenly;
+=======
+	display: flex;
+	justify-content: space-evenly;
+
+}
+
+input[placeholder="Write comment..."] {
+	font-size: 2vh;
+	background-color: #D0D7DE;
+	border-radius: 0px;
+	margin-right: 10px;
+	border-radius: 5px;
+}
+
+input[type="Submit"] {
+	display: inline;
+	width: 50px;
+	border-radius: 5px;
+	margin-right: 10px;
+>>>>>>> 6d2b982b3059ff5b9963a493eb1ccfb927ac118a
 }
 
 #comment-post {
@@ -521,7 +584,7 @@ i {
 
 .left-foot,
 .right-foot {
-    min-width: 45%;
+    min-width: 35%;
     padding: 15px;
 }
 
@@ -539,8 +602,9 @@ i {
 }
 
 .left-foot h2 {
-    font-size: 12px;
+    font-size: 16px;
     text-transform: uppercase;
+	color: #002A2B;
 }
 
 .left-foot p {
@@ -591,8 +655,22 @@ i {
     margin-left: 12px;
 }
 
+<<<<<<< HEAD
 @media (max-width: 620px) {
     .right-foot ul {
         margin-top: 25px;
     }
 }
+=======
+/*-------------------------error---------------------------------*/
+.error-message {
+    background-color: rgba(208, 215, 222, 0.5);
+    height: 400px;
+    min-width: 35%;
+    padding: 30px;
+    border-radius: 20px;
+}
+.error-message img{
+	height: 200px;
+}
+>>>>>>> 6d2b982b3059ff5b9963a493eb1ccfb927ac118a
