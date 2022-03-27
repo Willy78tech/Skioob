@@ -56,7 +56,7 @@ nav a {
 }
 
 .burger {
-    font-size: 8vh;
+    font-size: 5vh;
     color: black;
     float: left;
 }
@@ -71,6 +71,7 @@ nav a {
 }
 
 nav:hover .downmenu {
+    margin-top: 50px;
     display: block;
     padding: 15px;
     z-index: 1;
@@ -86,8 +87,17 @@ i {
     margin-right: 15px;
 }
 
-ul li:hover {
+.downmenu li:hover {
     background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.downmenu a {
+    font-weight: normal;
+}
+
+.downmenu li:hover {
+    color: white;
 }
 
 
@@ -144,7 +154,6 @@ ul li:hover {
     display: flex;
     width: 100%;
     height: 300px;
-    justify-content: space-around;
     margin: 0px 50px 0 50px;
 }
 
@@ -155,11 +164,11 @@ ul li:hover {
     background-position: center;
     background-size: cover;
     border-radius: 50%;
-    margin: -60px 0px 0px 40px;
+    margin: -60px 130px 0px 200px;
 }
 
 .profile-name {
-    text-align: right;
+    text-align: center;
 }
 
 .profile-name h1 {
@@ -177,11 +186,14 @@ ul li:hover {
     font-size: 3vh;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 960px) {
     .profile-picture {
         height: 150px;
         width: 150px;
         margin: -30px 0px 0px 3px;
+    }
+    .profile-name {
+        text-align: right;
     }
     .profile-name h1 {
         font-size: 4vh;
@@ -223,6 +235,7 @@ ul li:hover {
 
 .text-post {
     padding: 30px;
+    text-align: left;
 }
 
 .user-post {
@@ -231,6 +244,7 @@ ul li:hover {
     background-color: #FFFAFA;
     padding: 10px;
     border-radius: 5px;
+    text-align: left;
 }
 
 .date {
@@ -241,20 +255,6 @@ ul li:hover {
 .comment-line {
     display: flex;
     justify-content: space-evenly;
-}
-
-input[placeholder="Write comment..."] {
-    font-size: 2vh;
-    background-color: #D0D7DE;
-    border-radius: 0px;
-    margin-right: 10px;
-    border-radius: 5px;
-}
-
-input[type="Submit"] {
-    width: 50px;
-    border-radius: 5px;
-    margin-right: 5px;
 }
 
 #comment-post {
@@ -281,24 +281,31 @@ h2 {
     color: #002a2b;
 }
 
+.profile .form-control {
+    width: 150px;
+}
+
 .comment {
     display: flex;
-    width: 70%;
+    justify-content: space-evenly;
+}
+
+.comment button {
+    height: 40px;
 }
 
 
 /* ------------PAGES CONNEXION & INSCRIPTION-------------- */
 
 .flexbox-container {
-    display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 501px;
 }
 
-#connexion .flexbox-container {
+.flexbox-container {
     justify-content: center;
     margin: auto;
+    height: 501px;
 }
 
 
@@ -306,7 +313,6 @@ h2 {
 
 #catchwords {
     text-align: left;
-    margin-right: 10px;
     text-transform: uppercase;
     font-family: "made_sunflower";
 }
@@ -317,10 +323,12 @@ h2 {
 
 #catchwords :nth-child(2) {
     font-size: 2.5em;
+    margin-left: 30px;
 }
 
 #catchwords :nth-child(3) {
     font-size: 3em;
+    margin-left: 60px;
 }
 
 @media (max-width: 620px) {
@@ -343,11 +351,7 @@ h2 {
     background-color: rgba(208, 215, 222, 0.5);
     border-radius: 15px;
     min-width: 32%;
-}
-
-#connexion .form-container {
-    width: 35%;
-    padding: 10px;
+    padding: 5px;
 }
 
 .form-title {
@@ -362,6 +366,7 @@ h2 {
     height: 30px;
     border-radius: 5px;
     font-family: "made_sunflower";
+    border: none;
 }
 
 .form-container form {
@@ -372,28 +377,30 @@ h2 {
     font-weight: light;
 }
 
-button {
-    width: 120px;
-    height: 30px;
-    color: white;
-    background-color: #6C93AB;
-    border-radius: 5px;
-}
-
 .form-link {
     margin-top: 30px;
     font-size: 10px;
 }
 
+.form-container input {
+    width: 120px;
+    margin: auto;
+}
+
+.form-container h1 {
+    margin-top: 20px;
+}
+
 
 /* ------------PAGE ERREUR-------------- */
 
-#error-message {
+.error-message {
     background-color: rgba(208, 215, 222, 0.5);
     height: 400px;
-    min-width: 35%;
+    min-width: 40%;
     padding: 30px;
     border-radius: 20px;
+    margin: auto;
 }
 
 
@@ -409,10 +416,10 @@ button {
     background-color: rgba(208, 215, 222, 0.7);
 }
 
-#inscription .footer-container,
-#connexion .footer-container {
+.fixed-footer {
     position: fixed;
     bottom: 0;
+    width: 100%;
 }
 
 .left-foot,
@@ -454,11 +461,6 @@ button {
     }
 }
 
-.left-foot button {
-    background-color: black;
-    color: white;
-}
-
 .left-foot h2,
 .left-foot p,
 .left-foot form {
@@ -467,6 +469,10 @@ button {
 
 .left-foot p {
     color: #6C93AB;
+}
+
+.left-foot input {
+    border: none;
 }
 
 
