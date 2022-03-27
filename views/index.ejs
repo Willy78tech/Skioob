@@ -1,4 +1,9 @@
 <main class="sign-background-image">
+    <% if (!!flashMessages.connect_msg) { %>
+        <div class="alert alert-success">
+            <%= flashMessages.connect_msg %>
+        </div>
+    <% }; %>
     <div id="connexion">
         <div class="flexbox-container">
             <div class="form-container">
