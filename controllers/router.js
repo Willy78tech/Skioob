@@ -28,6 +28,8 @@ router.get("/spotfeed", spotController.spotFeed);
 
 router.get("/spotform", spotController.spotForm);
 
+router.post("/spotform", spotController.spotAdd);
+
 router.get("/spotinfo", spotController.spotInfo);
 
 module.exports = router;

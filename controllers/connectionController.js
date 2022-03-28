@@ -18,7 +18,7 @@ exports.connect = (req, res) => {
             //API return un token et on le sauvegarde
             if (!!token){
                 res.app.locals.apiToken = token;
-                res.redirect("/profile");
+                res.redirect("/spotfeed");
                 }
             })
         .catch(() => {
@@ -27,6 +27,7 @@ exports.connect = (req, res) => {
                 title: "API erreur"
             });
         });
+
 };
 
 //affiche la page profil ou le formulaire
@@ -72,7 +73,8 @@ exports.showProfile = (req, res) => {
                 eMessage: error.response.data,
                 title: "API erreur"
             });
-        });       
+        });    
+        
     }
     //sinon on affiche la page d'erreur
     else
