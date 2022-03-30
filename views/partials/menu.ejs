@@ -7,11 +7,11 @@
                         <ul class="downmenu">                         
                             <% if(title == "Inscription") { %>
                                 <li><a href="/">Se connecter</a></li>
-                            <% } %>
-                            <% if(title == "Bienvenue") { %>
+                            
+                            <% } if(title == "Bienvenue" || title == "Interdit") { %>
                                 <li><a href="/signup">S'inscrire</a></li>
-                            <% } %>
-                            <% if(title == "Mon profil" || title == "Spot Form" || title == "Spots Feed" || title == "Spots Info") { %>
+                            
+                            <% } else { %>
                                 <li><a href="/logout">Se déconnecter</a></li>
                             <% } %>
                         </ul>
