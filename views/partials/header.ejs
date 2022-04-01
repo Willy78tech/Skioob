@@ -11,9 +11,9 @@
     <title><%= title %></title>
 </head>
 
+    <% if (title == "Bienvenue" || title == "Inscription") { %>
+        <body class="body-log sign-background-image">
+    <%} else { %>
+        <body class="body-log texture-background"></body>
+    <% }; %>
 
-<% if (title == "Bienvenue" || title == "Inscription") { %>
-    <body class="body-log sign-background-image">
-<%} else { %>
-    <body class="body-log texture-background"></body>
-<% }; %>

@@ -26,11 +26,17 @@ router.get("/logout", logoutController.logout);    //efface les données de loca
 
 router.get("/spotfeed", spotController.spotFeed);
 
-router.get("/spotform", spotController.spotForm);
+router.get("/spotform", spotController.spotFormAdd);
+
+router.get('/spotform/:id', spotController.spotFormEdit);
+
+router.post('/spotform/:id', spotController.spotEdit);
 
 router.post("/spotform", spotController.spotAdd);
 
-router.get("/spotinfo", spotController.spotInfo);
+router.get("/spotinfo/:id", spotController.spotInfo);
+
+router.get('/delete/:id', spotController.spotDelete);
 
 module.exports = router;
 
