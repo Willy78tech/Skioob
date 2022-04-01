@@ -54,4 +54,7 @@ app.use(errorsController.respondExternalError);
 
 app.use(errorsController.respondNotFound);
 
-app.listen(process.env.PORT);
+const port = process.env.PORT;
+app.listen(port, () => {
+    console.log(`Le serveur tourne au http://localhost:${port} `);
+});

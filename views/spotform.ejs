@@ -4,25 +4,25 @@
             <div class="form-title">
             <h1 class=>Share your spot</h1>
             </div>
-            <form class="spot-form" action="/spotform" method="POST">
+            <form class="spot-form" action="/spotform/<%= spot._id %>" method="POST">
                 <div>
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control">
+                    <input type="text" name="name" id="name" value="<%= spot.name %>" class="form-control">
                 </div>
                 <div>
                     <label for="description">Description&nbsp</label>
-                    <textarea name="description" id="description" class="form-control" rows="4" cols="50"></textarea>
+                    <textarea name="description" id="description" class="form-control" rows="4" cols="50"><%= spot.name %></textarea>
                 </div>
                 <div>
                     <label for="address">Address</label>
-                    <input type="text" name="address" id="address" class="form-control">
+                    <input type="text" name="address" id="address" value="<%= spot.address %>" class="form-control">
                 </div>
                 <div>
                     <label for="difficulty">Difficulty</label>
                     <select name="difficulty" id="difficulty" class="form-control">
-                        <option value="facile">Facile</option>
-                        <option value="intermédiaire">Intermédiaire</option>
-                        <option value="difficile">Difficile</option>
+                        <option value="facile" <% if (spot.difficulty == 'facile') { %>selected<% } %>>Easy</option>
+                        <option value="intermédiaire" <% if (spot.difficulty == 'intermédiaire') { %>selected<% } %>>Intermediate</option>
+                        <option value="difficile" <% if (spot.difficulty == 'difficile') { %>selected<% } %>>Hard</option>
                     </select>
                 </div>
                 <div>

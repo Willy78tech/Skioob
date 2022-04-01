@@ -1,4 +1,5 @@
 /*------------- BODY-------------- */
+html {height: 100%;}
 
 body {
     margin: 0px;
@@ -138,13 +139,12 @@ i {
 /* -------------- MAIN PROFILE -------------- */
 
 .texture-background {
-    display: flex;
-    flex-wrap: wrap;
     background-image: url("../images/background-texture.jpg");
-    background-attachment: scroll;
-    height: 100%;
-    width: 100%;
-    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+    
 }
 
 .cover-photo {
@@ -219,6 +219,7 @@ i {
 .underline {
     width: 70%;
     border-bottom: 2px solid black;
+    margin: 0 auto;
 }
 
 
@@ -304,17 +305,10 @@ i {
 /* ------------PAGES CONNEXION & INSCRIPTION-------------- */
 
 .flexbox-container {
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.flexbox-container {
     display: flex;
-    height: 501px;
     justify-content: center;
     align-items: center;
-    align-content: center;
-    align-self: center;
+    
 }
 
 
@@ -341,8 +335,8 @@ i {
     min-width: 32%;
     padding: 5px;
     margin-right: 15%;
-    margin-top: 50%;
-    margin-bottom: 50%;
+    margin-top: 11%;
+    margin-bottom: 11%;
     margin-left: 15%;
     
 }
@@ -388,13 +382,16 @@ i {
 /* ------------PAGE ERREUR-------------- */
 
 .error-message {
-    background-color: rgba(208, 215, 222, 0.5);
+    background-color: rgba(208, 215, 222, 0.7);
     height: 400px;
     min-width: 40%;
     padding: 30px;
     border-radius: 20px;
-    margin: auto;
+    margin: 15% auto 15% auto;
+    
 }
+
+
 
 /*-----------------Spotfeed-----------------*/
 
@@ -407,7 +404,6 @@ i {
     align-items: center;
     font-family: "made_sunflower";
     margin: 1% 30% 1% 30%;
-    width: 50%;
     background-color:rgba(0, 42, 43, 0.2);
     border-radius: 5px;
     align-self: center;
@@ -493,7 +489,21 @@ i {
 
 .spot-form label {margin-top: 3%;}
 
+.spot-form-frame {
+    margin: 3% auto 3% auto;
+    background-color: rgba(235, 235, 235, 0.75);
+    width: 40%;
+    border-radius: 15px;
+    padding: 2%;
 
+}
+
+.spot-form{
+    width:60%;
+    margin: 0 auto
+}
+
+textarea{resize:none !important}
 
 /*--------------------------------------------------------*/
 

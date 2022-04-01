@@ -6,36 +6,34 @@
                 <a href="/spotform"> <img src="../images/arrow.svg" alt="create spot" width="25px" height="25px"></a>
             </div>
             
-            <div class="my-spots">
-                <div class="my-spot">
-                    <div class="spot-name">
-                        <h3>The Sunny Spot</h3>
-                        <div class="spot-icon">
-                            <form action="" method="">
-                                <input type="image" src="../images/edit-icon.svg" width="15px" height="15px">
-                            </form>
-                            <div>
-                                <form action="" method="">
-                                    <input type="image" src="../images/delete-icon.svg" width="15px" height="15px">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                        <a href="/spotinfo"><img src="../images/image-spot.jpg" alt="Spot de ski" width="50%"></a>
-                    <div class="spot-info">
-                        <div class="description">
-                            <p>Description</p>
-                            <p>Lorem ipsum dolor sit amet. At facilis quia quo consectetur deserunt qui rerum galisum. Id autem distinctio nam nulla internos qui provident !!!</p>
-                        </div>
-                        <div class="spot-detail">
-                            <div>
-                                <p>Address:<span>1234 Happy Road</span></p>
-                            </div>
-                            <div>
-                                <p>Difficulty:<span>Medium</span></p>
-                            </div>
-                        </div>                      
-                    </div>
+<% skiSpots.forEach(spot => { %>
+    <div class="my-spots">
+        <div class="my-spot">
+            <div class="spot-name">
+                <h3><%= spot.name %></h3>
+                <div class="spot-icon">
+                    <a href="/spotform/<%= spot._id %>"><input type="image" src="../images/edit-icon.svg" width="15px" height="15px"></a>
+                    <a href="/delete/<%= spot._id %>"><input type="image" src="../images/delete-icon.svg" width="15px" height="15px"></a>
                 </div>
             </div>
+                <a href="/spotinfo/<%= spot._id %>"><img src="../images/image-spot.jpg" alt="Spot de ski" width="50%"></a>
+            <div class="spot-info">
+                <div class="description">
+                    <p>Description</p>
+                    <p><%= spot.description %></p>
+                </div>
+                <div class="spot-detail">
+                    <div>
+                        <p>Address:<span><%= spot.address %></span></p>
+                    </div>
+                    <div>
+                        <p>Difficulty:<span><%= spot.difficulty %></span></p>
+                    </div>
+                </div>                      
+            </div>
+        </div>
+    </div>
+
+<% }) %>
+            
     </main>
