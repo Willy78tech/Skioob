@@ -106,7 +106,6 @@ exports.spotAdd = (req, res) => {
 
     axios.get(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${latitude}&lon=${longitude}`)
         .then((coordinates) => {
-            console.log(coordinates.data.features[0].properties.geocoding)
             var data = {
                 "name": req.body.name,
                 "description": req.body.description,
