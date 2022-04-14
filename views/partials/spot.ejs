@@ -5,7 +5,7 @@
         <% } else { %>
             <div class="col-lg-6 col-8">
         <% } %>
-<% console.log(spot) %>
+
         <input type="hidden" id="latitude" value="<%= spot.coordinates[0] %>">
         <input type="hidden" id="longitude" value="<%= spot.coordinates[1] %>">
         
@@ -26,7 +26,7 @@
                         <small class="mr-2"><%= new Date(spot.created_at).toDateString() %></small> 
                         
                         <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn dropdown-toggle shadow-none" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-ellipsis-h"></i> 
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -39,7 +39,8 @@
                 <div class="mb-3 text-center">
                     <a class="h3 text-decoration-none" href="/spotinfo/<%= spot._id %>"><%= spot.name %></a>
                 </div>
-                <img src="../images/image-spot.jpg" class="img-fluid" alt="Spot de ski">
+
+                <%- include('./galery.ejs', {pictures: Array.from(spot.pictures)}) %>
 
                 <div class="p-2">
 
@@ -55,10 +56,10 @@
                     </div>
 
                     <div class="row justify-content-between mt-3">
-                        <div class="col-auto">
+                        <div class="col-10">
                             <p><i class="fa fa-location-dot text-secondary"></i> <%= spot.address %></p>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-2">
                             <span class="p-2 fs-5 badge bg-<%= badge(spot.difficulty) %>"><%= spot.difficulty %></span>
                         </div>
                     </div>

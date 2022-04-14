@@ -11,7 +11,7 @@
                     <h1 class="text-center">Share your spot</h1>
                 </div>
     
-                <form action="/spotform/<%= spot._id %>" method="POST">
+                <form action="/spotform/<%= spot._id %>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name of the spot</label>
                         <input type="text" class="form-control" id="name" name="name" value="<%= spot.name %>" aria-describedby="nameHelp">
@@ -22,18 +22,18 @@
                         <textarea name="description" id="description" class="form-control" rows="4" cols="50"><%= spot.name %></textarea>
                     </div>
                     <div>
-                        <label for="address">Address</label>
+                        <label for="coordinates">Coordinates</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="address" placeholder="Coordinates" aria-label="Coordinates" aria-describedby="button-addon2">
+                            <input type="text" class="form-control" value="<%= spot.coordinates %>" id="coordinates" placeholder="Coordinates" aria-label="Coordinates" aria-describedby="button-addon2">
                             <button type="button" class="btn btn-outline-secondary" id="button-addon2" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-location-dot"></i></button>
                         </div>
                     </div>
                     <div>
-                        <label for="address">Photo</label>
+                        <label for="photo">Photo</label>
                         <div class="input-group mb-3">
-                            <input type="file" name="photo" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"><i class="fa fa-image"></i></button>
-                        </div>
+                            <input type="file" multiple class="form-control" name="photo" id="inputGroupFile02">
+                            <label class="btn btn-outline-secondary" for="inputGroupFile02"><i class="fa fa-image"></i></label>
+                          </div>
                     </div>
                     <div class="mb-3">
                         <label for="difficulty">Difficulty</label>
