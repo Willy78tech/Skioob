@@ -1,31 +1,26 @@
 "use strict";
 
-const axios = require("axios");
-
-const apiLoginUrl = "https://ski-api.herokuapp.com/login";
-const apiTokenUrl = "https://ski-api.herokuapp.com/tokenInfo";
+const apiController = require("./apiController");
 
 //se connecte en utilisant API
 exports.connect = (req, res) => {
+
     let data = {
         password: req.body.password,
         email: req.body.email        
     };
 
-    axios.post(apiLoginUrl, data)
-        .then((result) => {
+    apiController.login(data)
+        .then(result => {
             let token = result.data.token;
             //API return un token et on le sauvegarde
             if (!!token){
                 res.app.locals.apiToken = token;
-                res.redirect("/spotfeed");
+                res.redirect(`/spotfeed/1`);
                 }
             })
         .catch(() => {
-            res.render("error", {
-                eMessage: "Vos données ne sont pas valides ", 
-                title: "API erreur"
-            });
+            res.render("error", {eMessage: "Vos données ne sont pas valides ", title: "API erreur"});
         });
 
 };
@@ -42,44 +37,3 @@ exports.index = (req, res) => {
     else
         res.render("index", {title: "Bienvenue"}); 
 };
-
-//affiche la page profil
-exports.showProfile = (req, res) => {
-
-    const token = res.app.locals.apiToken;
-
-    if(!!token){
-
-        var config = {
-          method: 'get',
-          url: apiTokenUrl,
-          data : {"access_token": token}
-        };
-        
-        axios(config)
-        .then((result) => {
-            const userData = {
-                name: result.data.name,     
-                email: result.data.email
-            }; 
-            res.render("profile", {
-                title: "Mon profil",
-                connected: true,    //on utilise cette variable dans le menu.ejs pour afficher le bon menu
-                data: userData
-            });
-        })
-        .catch((error) => {
-            res.render("error", {
-                eMessage: error.response.data,
-                title: "API erreur"
-            });
-        });    
-        
-    }
-    //sinon on affiche la page d'erreur
-    else
-        res.render("error", {title: "Interdit", eMessage: "Vous n'avez pas l'access à cette page"});
-};
-
-
-
