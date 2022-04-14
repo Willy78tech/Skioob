@@ -19,6 +19,13 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(express.json());
 
+//   telechargement des fichiers
+const fileUpload = require('express-fileupload');
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : 'C:/tmp/'
+}));
+
 //session et cookies et flash messages
 const expressSession = require("express-session");
 const cookieParser = require("cookie-parser");

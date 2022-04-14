@@ -661,14 +661,21 @@ hr {
     box-shadow: none
 }
 
-.thumb-post img {
+.thumb-post img,
+.galery img {
     object-fit: cover; 
     object-position: center; 
     max-height: 50px;
     margin-bottom: 1rem;
   }
 
-.input-group button i{
+.galery img{
+    height: 100%;
+    max-height: initial;
+}
+
+.input-group button i,
+.input-group label i{
     margin-right: 0;
 }
 

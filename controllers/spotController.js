@@ -1,6 +1,9 @@
 "use strict";
 
 const apiController = require('./apiController');
+const axios = require('axios');
+
+let fs = require('fs');
 
 const badge = (difficulty) => {
     if(difficulty == 'facile')
@@ -61,27 +64,71 @@ exports.spotFormEdit = (req, res) => {
     });  
 };
 
+//on telecharge les fichiers et on retourne le nom du fichier
+const savePhoto = (files) => {
+
+    let pictures = [];
+
+    const save = (photo) => {
+        let newpath = "public/uploads/";
+        let filepath = photo.tempFilePath;
+
+        newpath += photo.name;
+    
+        fs.rename(filepath, newpath, function () {
+            pictures.push(photo.name);
+        });
+    };
+
+    if(files){
+        if(!Array.isArray(files.photo)){
+            save(files.photo);
+        }
+        else{
+            files.photo.forEach(photo => {
+                save(photo);
+            });
+        }
+    }
+
+    return pictures;
+};
+
 //sauvegarder les donnees
 exports.spotAdd = (req, res) => {
 
     const token = res.app.locals.apiToken;
 
-    var data = {
-        "name": req.body.name,
-        "description": req.body.description,
-        "coordinates": [req.body.latitude, req.body.longitude],
-        "difficulty": req.body.difficulty,
-        "address": "Québec, Canada",
-        "pictures": [req.body.photo]
-    };
-    console.log(data);
-    apiController.saveSpot(token, data, 'post')    
-        .then(() => {
-            res.redirect("/spotfeed/1");
+    const latitude = req.body.latitude;
+    const longitude = req.body.longitude;
+
+    let pictures = savePhoto(req.files);
+
+    axios.get(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${latitude}&lon=${longitude}`)
+        .then((coordinates) => {
+            console.log(coordinates.data.features[0].properties.geocoding)
+            var data = {
+                "name": req.body.name,
+                "description": req.body.description,
+                "coordinates": [req.body.latitude, req.body.longitude],
+                "difficulty": req.body.difficulty,
+                "address": coordinates.data.features[0].properties.geocoding.country + ', ' +
+                coordinates.data.features[0].properties.geocoding.postcode + ', ' +
+                coordinates.data.features[0].properties.geocoding.district + ', ' +
+                coordinates.data.features[0].properties.geocoding.street,
+                "pictures": pictures
+            };
+            apiController.saveSpot(token, data, 'post')    
+                .then(() => {
+                    res.redirect("/spotfeed/1");
+                })
+                .catch((error) => {
+                    res.render("error", {eMessage: error, title: "API erreur"});
+                }); 
         })
         .catch((error) => {
-            res.render("error", {eMessage: error, title: "API erreur"});
-        });    
+            res.render("error", {eMessage: error,  title: "API address erreur" });
+        });
 };
 
 //modifier les donnees
@@ -89,23 +136,35 @@ exports.spotEdit = (req, res) => {
 
     const token = res.app.locals.apiToken;
 
+    const latitude = req.body.latitude;
+    const longitude = req.body.longitude;
+
     var spotId = req.params.id;
 
-    var data = {
-        "name": req.body.name,
-        "description": req.body.description,
-        "coordinates": [req.body.latitude, req.body.longitude],
-        "address": "Québec, Canada",
-        "difficulty": req.body.difficulty,
-    };
-    
-    apiController.saveSpot(token, data, 'put', spotId)
-        .then(() => {
-            res.redirect("/spotfeed/1");
+    let pictures = savePhoto(req.files);
+
+    axios.get(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${latitude}&lon=${longitude}`)
+        .then((coordinates) => {
+            var data = {
+                "name": req.body.name,
+                "description": req.body.description,
+                "coordinates": [req.body.latitude, req.body.longitude],
+                "address": JSON.stringify(coordinates.data.features[0].properties.geocoding.label),
+                "difficulty": req.body.difficulty,
+                "pictures": pictures
+            };
+
+            apiController.saveSpot(token, data, 'put', spotId)
+                .then(() => {
+                    res.redirect("/spotfeed/1");
+                })
+                .catch((error) => {
+                    res.render("error", {eMessage: error,  title: "API erreur" });
+                });    
         })
         .catch((error) => {
-            res.render("error", {eMessage: error,  title: "API erreur" });
-        });    
+            res.render("error", {eMessage: error,  title: "API address erreur" });
+        });
 };
 
 //afficher la page du spot
@@ -117,7 +176,6 @@ exports.spotInfo = (req, res) => {
 
     apiController.getSpot(token, spotId)
           .then(spot => {
-              console.log(spot)
              apiController.getUserById(spot.data.skiSpot.created_by, token)
               .then(user => {
                 res.render("spotinfo", { 
