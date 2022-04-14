@@ -1,43 +1,52 @@
 
 <main class="sign-background-image">
-  <div class="flexbox-container">
-    <div class="container">
-      <div class="catchwords">
-        <div class="my-4">
-          <div class="display-3">SEEK</div>
-        </div>
-        <div class="my-4">
-          <div>&nbsp;</div>
-          <div class="display-2">DISCOVER</div>
-        </div>
-        <div class="my-4">
-          <div>&nbsp;</div>
-          <div class="display-1">CONTRIBUTE</div>
-        </div>
-      </div>
-    </div>
-      <div class="form-container">
-          <div class="form-title">
-              <h1 class="verb">Stay in the loop</h1>
+    <div class="container-fluid my-5">
+      <div class="row justify-content-lg-between justify-content-center">
+        <div class="col-auto">
+          <div class="catchwords mx-5">
+            <div class="row my-5">
+              <div class="col-12">
+                <div class="display-5">SEEK</div>
+              </div>
+            </div>
+            <div class="row my-5">
+              <div class="col-11 offset-1">
+                <div class="display-3">DISCOVER</div>
+              </div>
+            </div>
+            <div class="row my-5">
+              <div class="col-10 offset-2">
+                <div class="display-1">CONTRIBUTE</div>
+              </div>
+            </div>
           </div>
-          <form action="/signup" method="post">
-              <div class="mb-3">
-                  <input type="text" name="name" id="name" class="form-control" placeholder="Nom" required>
-              </div>
-              <div class="mb-3">
-                  <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
-              </div>
-              <div class="mb-3">
-                  <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" required onkeyup='check_pass();'>
-              </div>
-              <div class="mb-3">
-                  <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirmer mot de passe" required onkeyup='check_pass();'>
-                  <span id='message'></span>
-              </div>
-              <button type="submit" id="submit" class="btn btn-primary mb-3 w-50 h-100">S'inscrire</button> 
-          </form>
-          <div class="form-link"><p>Déjà inscrit(e) ? <a href="/">S’identifier</a></p></div> 
+        </div>
+        <div class="col-lg-4 col-md-6 col-8 bg-light bg-opacity-50 p-4 my-3 mx-5 rounded text-center">
+          <div class="container-fluid">
+            <div class="form-title">
+              <h1 class="verb">Stay in the loop</h1>
+            </div>
+            <form action="/signup" method="post">
+                <div class="mb-3">
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Nom" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" required onkeyup='check_pass();'>
+                </div>
+                <div class="mb-5">
+                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirmer mot de passe" required onkeyup='check_pass();'>
+                    <span id='message'></span>
+                </div>
+                <button type="submit" id="submit" class="btn btn-primary mb-3 w-50 h-100">S'inscrire</button> 
+            </form>
+            <div class="form-link"><p>Déjà inscrit(e) ? <a href="/">S’identifier</a></p></div> 
+          </div>
+        </div>
       </div>
+      
   </div>
 </main>
 
@@ -51,7 +60,7 @@
       } else {
           document.getElementById('submit').disabled = true;
           document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'not matching';
+          document.getElementById('message').innerHTML = 'not matching';
       }
   }
 </script>

@@ -1,212 +1,153 @@
 "use strict";
 
-var axios = require('axios');
-
 const apiController = require('./apiController');
 
-const ifTokenExists = (res, token) => {
-    if(!token)
-        res.render("error", {title: "Interdit", eMessage: "Vous n'avez pas l'access à cette page"});
-}
+const badge = (difficulty) => {
+    if(difficulty == 'facile')
+        return 'success';
+    else if (difficulty == 'difficile')
+        return 'danger';
+    else
+        return 'warning';
+};
 
 //fils d'actualité
 exports.spotFeed = (req, res) => {
 
     const token = res.app.locals.apiToken;
 
-    ifTokenExists(res, token);
+    var page = req.params.page || 1;
+    var perPage = 5;
 
-    apiController.allSpots(token)
+    apiController.getSpotsPerPage(token, page, perPage)
         .then(response  => {
-            res.render('spotfeed', {title: "Spot feed", skiSpots: response.data.skiSpots});
+            res.render('spotfeed', {
+                title: "Spot feed", 
+                skiSpots: response.data.skiSpots,
+                current: page,
+                pages: response.data.totalPages,
+                user: {name: 'William Garneau'}, // à venir
+                badge,
+                full: false}); // pas de description, pas de google map
         })
         .catch(error => {
             res.render("error", {eMessage: error, title: "API erreur" });
         });
-        
 };
 
 //afficher la page pour ajouter un spot
 exports.spotFormAdd = (req, res) => {
-    res.render("spotform", {
-        title : "Ajouter le nouveau spot",
-        spot: ''
-    });
+
+    res.render("spotform", {title : "Ajouter le nouveau spot", spot: ''});
+
 };
 
+//afficher la page pour modifier un spot
 exports.spotFormEdit = (req, res) => {
 
     const token = res.app.locals.apiToken;
-    
-    if(!!token){
 
-        var spotId = req.params.id;
+    const spotId = req.params.id;
 
-        var config = {
-            method: 'get',
-            url: `http://ski-api.herokuapp.com/ski-spot/${spotId}`,
-            headers: {'Authorization': token}
-          };
-          
-          axios(config)
-          .then(response => {
+    apiController.getSpot(token, spotId)    
+        .then(response => {
             res.render("spotform", {
-                title : response.data.skiSpot.name,
-                spot: response.data.skiSpot
-            });
-          })
-          .catch(error => {
-            res.render("error", {
-                eMessage: error,
-                title: "API erreur"
-            });
-        });  
-
-    }
-    else
-        res.render("error", {title: "Interdit", eMessage: "Vous n'avez pas l'access à cette page"});
-
-}
-
+                title : response.data.skiSpot.name, 
+                spot: response.data.skiSpot,
+                page: req.params.page});
+        })
+        .catch(error => {
+            res.render("error", {eMessage: error, title: "API erreur" });
+    });  
+};
 
 //sauvegarder les donnees
 exports.spotAdd = (req, res) => {
 
     const token = res.app.locals.apiToken;
-    
-    if(!!token){
 
-        var data = {
-            "name": req.body.name,
-            "description": req.body.description,
-            "address": req.body.address,
-            "difficulty": req.body.difficulty,
-        };
-    
-        var config = {
-            method: 'post',
-            url: 'https://ski-api.herokuapp.com/ski-spot',
-            headers: {'Authorization': token},
-            data : data
-        };
-        
-        axios(config)
+    var data = {
+        "name": req.body.name,
+        "description": req.body.description,
+        "coordinates": [req.body.latitude, req.body.longitude],
+        "difficulty": req.body.difficulty,
+        "address": "Québec, Canada",
+        "pictures": [req.body.photo]
+    };
+    console.log(data);
+    apiController.saveSpot(token, data, 'post')    
         .then(() => {
-            res.redirect("/spotfeed");
+            res.redirect("/spotfeed/1");
         })
         .catch((error) => {
-            res.render("error", {
-                eMessage: error,
-                title: "API erreur"
-            });
+            res.render("error", {eMessage: error, title: "API erreur"});
         });    
-    }
-
-    else
-        res.render("error", {title: "Interdit", eMessage: "Vous n'avez pas l'access à cette page"});
-
 };
 
 //modifier les donnees
 exports.spotEdit = (req, res) => {
 
     const token = res.app.locals.apiToken;
-    
-    if(!!token){
 
-        var spotId = req.params.id;
+    var spotId = req.params.id;
 
-        var data = {
-            "name": req.body.name,
-            "description": req.body.description,
-            "address": req.body.address,
-            "difficulty": req.body.difficulty,
-        };
+    var data = {
+        "name": req.body.name,
+        "description": req.body.description,
+        "coordinates": [req.body.latitude, req.body.longitude],
+        "address": "Québec, Canada",
+        "difficulty": req.body.difficulty,
+    };
     
-        var config = {
-            method: 'put',
-            url:`http://ski-api.herokuapp.com/ski-spot/${spotId}`,
-            headers: {'Authorization': token},
-            data : data
-        };
-        
-        axios(config)
+    apiController.saveSpot(token, data, 'put', spotId)
         .then(() => {
-            res.redirect("/spotfeed");
+            res.redirect("/spotfeed/1");
         })
         .catch((error) => {
-            res.render("error", {
-                eMessage: error,
-                title: "API erreur"
-            });
+            res.render("error", {eMessage: error,  title: "API erreur" });
         });    
-    }
-
-    else
-        res.render("error", {title: "Interdit", eMessage: "Vous n'avez pas l'access à cette page"});
-
 };
 
 //afficher la page du spot
 exports.spotInfo = (req, res) => {
 
     const token = res.app.locals.apiToken;
-    
-    if(!!token){
 
-        var spotId = req.params.id;
+    var spotId = req.params.id;
 
-        var config = {
-            method: 'get',
-            url: `http://ski-api.herokuapp.com/ski-spot/${spotId}`,
-            headers: {'Authorization': token}
-          };
-          
-          axios(config)
-          .then(response => {
-            res.render("spotinfo", {
-                title : "Spots Info",
-                skiSpot: response.data.skiSpot
-            });
+    apiController.getSpot(token, spotId)
+          .then(spot => {
+              console.log(spot)
+             apiController.getUserById(spot.data.skiSpot.created_by, token)
+              .then(user => {
+                res.render("spotinfo", { 
+                    title : "Spots Info", 
+                    spot: spot.data.skiSpot, 
+                    user: user.data.user,
+                    badge,
+                    full: true});   //afficher la description au complet
+              })
+              .catch(error => {
+                res.render("error", {eMessage: error, title: "API erreur"});
+              });
           })
           .catch(error => {
-            res.render("error", {
-                eMessage: error,
-                title: "API erreur"
-            });
+            res.render("error", {eMessage: error, title: "API erreur"});
         });  
-
-    }
-    else
-        res.render("error", {title: "Interdit", eMessage: "Vous n'avez pas l'access à cette page"});
 };
 
+//effacer un spot
 exports.spotDelete = (req, res) => {
 
     const token = res.app.locals.apiToken;
-    
-    if(!!token){
 
-        var spotId = req.params.id;
+    var spotId = req.params.id;
 
-        var config = {
-            method: 'delete',
-            url: `http://ski-api.herokuapp.com/ski-spot/${spotId}`,
-            headers: {'Authorization': token}
-            };
-          
-          axios(config)
-          .then(response => {
-            res.redirect('/spotfeed');
+    apiController.saveSpot(token, null, 'delete', spotId)
+          .then(() => {
+            res.redirect('/spotfeed/1');
           })
           .catch(error => {
-            res.render("error", {
-                eMessage: error,
-                title: "API erreur"
-            });
+            res.render("error", { eMessage: error, title: "API erreur" });
         });  
-
-    }
-    else
-        res.render("error", {title: "Interdit", eMessage: "Vous n'avez pas l'access à cette page"});
-}
+};

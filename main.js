@@ -15,8 +15,6 @@ app.use(express.static(path.resolve(__dirname, "public")));
 
 const router = require("./controllers/router");
 
-const errorsController = require("./controllers/errorsController");
-
 app.use(express.urlencoded({extended: true}));
 
 app.use(express.json());
@@ -49,10 +47,6 @@ app.use(expressLayouts);
 app.set("layout", "./layouts/main.ejs");
 
 app.use(router);
-
-app.use(errorsController.respondExternalError);
-
-app.use(errorsController.respondNotFound);
 
 const port = process.env.PORT;
 app.listen(port, () => {

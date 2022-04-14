@@ -25,5 +25,65 @@
         </div>
     </div>
 </footer>
+
+
+<script>
+var latitude; 
+var longitude; 
+
+const defaultLatitude = 46.813878;
+const defaultLongitude = -71.207981;
+
+if(document.getElementById("latitude") && document.getElementById("latitude").value != null)
+    latitude = document.getElementById("latitude").value;
+else
+    latitude = defaultLatitude;
+
+if(document.getElementById("longitude") && document.getElementById("longitude").value != null)
+    longitude = document.getElementById("longitude").value;
+else
+    longitude = defaultLongitude;
+
+    console.log(latitude, longitude)
+
+function updateControls(addressComponents) {
+    $('#address').val(addressComponents.addressLine1);
+    $('#address').val(addressComponents.city);
+    $('#address').val(addressComponents.stateOrProvince);
+    $('#address').val(addressComponents.postalCode);
+    $('#address').val(addressComponents.country);
+}
+
+$('#us2').locationpicker({
+    location: {
+        latitude: latitude,
+        longitude: longitude
+    },
+    radius: 300,
+    inputBinding: {
+        latitudeInput: $('#us2-lat'),
+        longitudeInput: $('#us2-lon')
+    },
+    enableAutocomplete: true,
+    autocompleteOptions: {
+        types: ['(cities)'],
+        componentRestrictions: {country: 'ca'}
+    },
+    onchanged: function (currentLocation, radius, isMarkerDropped) {
+        var mapContext = $(this).locationpicker('map');
+        $('#address').val(mapContext.location.latitude)
+    },
+    // onchanged: function (currentLocation, radius, isMarkerDropped) {
+    //     var addressComponents = $(this).locationpicker('map').location.addressComponents;
+    //     updateControls(addressComponents);
+    //     console.log(addressComponents)
+    // },
+    oninitialized: function(component) {
+        var addressComponents = $(component).locationpicker('map').location.addressComponents;
+        updateControls(addressComponents);
+    }
+});
+
+</script>
 </body>
 </html>
