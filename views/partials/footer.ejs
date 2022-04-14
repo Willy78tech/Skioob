@@ -35,10 +35,10 @@
     var validLatitude = 46.813878;
     var validLongitude = -71.207981;
 
-    if(latitude && latitude.value != null && latitude.value != 120)
+    if(latitude && latitude.value != null)
         validLatitude = document.getElementById("latitude").value;
 
-    if(longitude && longitude.value != null && longitude.value != 120)
+    if(longitude && longitude.value != null)
         validLongitude = document.getElementById("longitude").value;
 
     $('#us2').locationpicker({
