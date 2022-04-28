@@ -6,7 +6,7 @@ const axios = require('axios');
 let fs = require('fs');
 
 const badge = (difficulty) => {
-    if(difficulty == 'facile')
+    if (difficulty == 'facile')
         return 'success';
     else if (difficulty == 'difficile')
         return 'danger';
@@ -23,25 +23,26 @@ exports.spotFeed = (req, res) => {
     var perPage = 5;
 
     apiController.getSpotsPerPage(token, page, perPage)
-        .then(response  => {
+        .then(response => {
             res.render('spotfeed', {
-                title: "Spot feed", 
+                title: "Spot feed",
                 skiSpots: response.data.skiSpots,
                 current: page,
                 pages: response.data.totalPages,
-                user: {name: 'William Garneau'}, // à venir
+                user: { name: 'William Garneau' }, // à venir
                 badge,
-                full: false}); // pas de description, pas de google map
+                full: false
+            }); // pas de description, pas de google map
         })
         .catch(error => {
-            res.render("error", {eMessage: error, title: "API erreur" });
+            res.render("error", { eMessage: error, title: "API erreur" });
         });
 };
 
 //afficher la page pour ajouter un spot
 exports.spotFormAdd = (req, res) => {
 
-    res.render("spotform", {title : "Ajouter le nouveau spot", spot: ''});
+    res.render("spotform", { title: "Ajouter le nouveau spot", spot: '' });
 
 };
 
@@ -52,16 +53,17 @@ exports.spotFormEdit = (req, res) => {
 
     const spotId = req.params.id;
 
-    apiController.getSpot(token, spotId)    
+    apiController.getSpot(token, spotId)
         .then(response => {
             res.render("spotform", {
-                title : response.data.skiSpot.name, 
+                title: response.data.skiSpot.name,
                 spot: response.data.skiSpot,
-                page: req.params.page});
+                page: req.params.page
+            });
         })
         .catch(error => {
-            res.render("error", {eMessage: error, title: "API erreur" });
-    });  
+            res.render("error", { eMessage: error, title: "API erreur" });
+        });
 };
 
 //on telecharge les fichiers et on retourne le nom du fichier
@@ -74,17 +76,16 @@ const savePhoto = (files) => {
         let filepath = photo.tempFilePath;
 
         newpath += photo.name;
-    
-        fs.rename(filepath, newpath, function () {
+
+        fs.rename(filepath, newpath, function() {
             pictures.push(photo.name);
         });
     };
 
-    if(files){
-        if(!Array.isArray(files.photo)){
+    if (files) {
+        if (!Array.isArray(files.photo)) {
             save(files.photo);
-        }
-        else{
+        } else {
             files.photo.forEach(photo => {
                 save(photo);
             });
@@ -112,21 +113,21 @@ exports.spotAdd = (req, res) => {
                 "coordinates": [req.body.latitude, req.body.longitude],
                 "difficulty": req.body.difficulty,
                 "address": coordinates.data.features[0].properties.geocoding.country + ', ' +
-                coordinates.data.features[0].properties.geocoding.postcode + ', ' +
-                coordinates.data.features[0].properties.geocoding.district + ', ' +
-                coordinates.data.features[0].properties.geocoding.street,
+                    coordinates.data.features[0].properties.geocoding.postcode + ', ' +
+                    coordinates.data.features[0].properties.geocoding.district + ', ' +
+                    coordinates.data.features[0].properties.geocoding.street,
                 "pictures": pictures
             };
-            apiController.saveSpot(token, data, 'post')    
+            apiController.saveSpot(token, data, 'post')
                 .then(() => {
                     res.redirect("/spotfeed/1");
                 })
                 .catch((error) => {
-                    res.render("error", {eMessage: error, title: "API erreur"});
-                }); 
+                    res.render("error", { eMessage: error, title: "API erreur" });
+                });
         })
         .catch((error) => {
-            res.render("error", {eMessage: error,  title: "API address erreur" });
+            res.render("error", { eMessage: error, title: "API address erreur" });
         });
 };
 
@@ -158,59 +159,47 @@ exports.spotEdit = (req, res) => {
                     res.redirect("/spotfeed/1");
                 })
                 .catch((error) => {
-                    res.render("error", {eMessage: error,  title: "API erreur" });
-                });    
+                    res.render("error", { eMessage: error, title: "API erreur" });
+                });
         })
         .catch((error) => {
-            res.render("error", {eMessage: error,  title: "API address erreur" });
+            res.render("error", { eMessage: error, title: "API address erreur" });
         });
 };
 
 //afficher la page du spot
-exports.spotInfo = (req, res) => {
+exports.spotInfo = async(req, res) => {
 
     const token = res.app.locals.apiToken;
-    
+
     var spotId = req.params.id;
-    
-    var configSpot = {
-        method: 'get',
-        url: `http://ski-api.herokuapp.com/ski-spot/${spotId}`,
-        headers: {'Authorization': token}
-    };
-    
-    apiController.getSpot(token, spotId)
-          .then(spot => {
-             apiController.getUserById(spot.data.skiSpot.created_by, token)
-              .then(user => {
-                res.render("spotinfo", { 
-                    title : "Spots Info", 
-                    spot: spot.data.skiSpot, 
-                    user: user.data.user,
-                    badge,
-                    full: true});   //afficher la description au complet
-              })
-              .catch(error => {
-                res.render("error", {eMessage: error, title: "API erreur"});
-              });
-          })
-          .catch(error => {
-            res.render("error", {eMessage: error, title: "API erreur"});
-        });  
+
+    try {
+        const spot = await apiController.getSpot(token, spotId);
+        const user = await apiController.getUserById(spot.data.skiSpot.created_by, token);
+        res.render("spotinfo", {
+            title: "Spots Info",
+            spot: spot.data.skiSpot,
+            user: user.data.user,
+            badge,
+            full: true
+        }); //afficher la description au complet
+    } catch (error) {
+        res.render("error", { eMessage: error, title: "API erreur" });
+    }
 };
 
 //effacer un spot
-exports.spotDelete = (req, res) => {
+exports.spotDelete = async(req, res) => {
 
     const token = res.app.locals.apiToken;
 
     var spotId = req.params.id;
 
-    apiController.saveSpot(token, null, 'delete', spotId)
-          .then(() => {
-            res.redirect('/spotfeed/1');
-          })
-          .catch(error => {
-            res.render("error", { eMessage: error, title: "API erreur" });
-        });  
+    try {
+        await apiController.saveSpot(token, null, 'delete', spotId);
+        res.redirect('/spotfeed/1');
+    } catch (error) {
+        res.render("error", { eMessage: error, title: "API erreur" });
+    }
 };

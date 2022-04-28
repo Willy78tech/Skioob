@@ -13,21 +13,18 @@ exports.signupPage = (req, res) => {
 
 //crée un nouveau user en utilisant API
 exports.signup = async(req, res) => {
-    console.log("avant");
     const user = new User(
         req.body.email,
         req.body.name,
         req.body.password
     );
-    console.log("apres");
+
     try {
-        console.log("haha");
         await apiController.signup(user);
         req.flash("connect_msg", "Bienvenue dans notre portail");
         //après avoir s'incrit, on va vers la page index pour se connecter
         res.redirect('/');
     } catch (error) {
-        console.log(error);
         res.render("error", { eMessage: error, title: "API erreur" });
     }
 };
