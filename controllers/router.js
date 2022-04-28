@@ -34,6 +34,8 @@ router.get("/logout", logoutController.logout);    //efface les données de loca
 
 router.get("/profile", authController.ifTokenExists, profileController.showProfile);   //si connecté, affiche la page profil
 
+router.post("/profile", authController.ifTokenExists, profileController.editProfile);
+
 //skiSpots
 
 router.get("/spotfeed/:page", authController.ifTokenExists, spotController.spotFeed);
