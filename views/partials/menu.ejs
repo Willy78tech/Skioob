@@ -1,30 +1,27 @@
 <header>
-    <div class="header-log">
-        <div class="left-head">
-            <nav>
-                <ul>
-                    <li class="dropdown"><a href="#" class="burger">≡</a>
-                        <ul class="downmenu">                         
-                            <% if(title == "Inscription") { %>
-                                <li><a href="/">Se connecter</a></li>
-                            
-                            <% } if(title == "Bienvenue" || title == "Interdit") { %>
-                                <li><a href="/signup">S'inscrire</a></li>
-                            
-                            <% } else { %>
-                                <li><a href="/logout">Se déconnecter</a></li>
-                            <% } %>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+    <div class="row gx-0 p-3 bg-white bg-opacity-25">
+        <div class="col-2 align-self-center">
+            <div class="dropdown-toggle px-4" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                <i class="fa-solid fa-bars fs-3"></i>
+            </div>
+            <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+                <% if(title == "Inscription") { %>
+                    <li><a class="dropdown-item" href="/">Se connecter</a></li>
+                
+                <% } else if(title == "Bienvenue" || title == "Interdit") { %>
+                    <li><a class="dropdown-item" href="/signup">S'inscrire</a></li>
+                
+                <% } else { %>
+                    <li><a class="dropdown-item" href="/logout">Se déconnecter</a></li>
+                <% } %>
+            </ul>
         </div>
-        <div class="center-head">
+        <div class="col-8 text-center">
             <img src="../images/logo.png" alt="skioob-logo">
         </div>
-        <div class="right-head">
-            <a href="../spotfeed/1"> <img src="../images/forest.png" alt="mount icon"></a>
-            <a href="../profile"><img src="../images/user.png" alt="user icon"></a>
+        <div class="col-2 text-end align-self-center">
+            <a href="../spotfeed/1" class="px-2"> <img src="../images/forest.png" width="40" height="40" alt="mount icon"></a>
+            <a href="../profile" class="px-2"><img src="../images/user.png" width="40" height="40" alt="user icon"></a>
         </div>
     </div>
 </header>

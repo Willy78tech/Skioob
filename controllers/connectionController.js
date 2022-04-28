@@ -35,5 +35,5 @@ exports.index = (req, res) => {
         res.redirect("/profile");
     //si user n'est pas connecté, on affiche la page index avec un formulaire
     else
-        res.render("index", {title: "Bienvenue"}); 
+        res.render("index", {title: "Bienvenue", body_class: "start"}); 
 };

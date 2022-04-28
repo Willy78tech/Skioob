@@ -1,56 +1,39 @@
-
     <main>
-        
-        <div class="texture-background">
-            <div class="cover-photo rounded"></div>
-            <div class="profile-info">
-                <div class="profile-picture"></div>
-                <div class="profile-name">
-                    <h1 class="username" id="name"><%= data.name%></h1>
-                    <h2><%= data.email %></h2>
-                    <span id="badge">⋆ &nbsp</span><span id="title">Highest contributor</span>
-                </div>
+        <div class="mx-auto w-75 mt-5">
+            <img src="../images/banner-picture.jpg" class="img-ratio rounded w-100" height="250" alt="">
+        </div>
+        <div class="row gx-0 justify-content-center mt-n5">
+            <div class="col-auto px-3 align-self-center"><img src="../images/profile-picture.jpg" class="rounded-circle img-ratio" width="250" height="250" alt=""></div>
+            <div class="col-auto px-3 align-self-center">
+                <h1 class="text-uppercase"><%= data.name%></h1>
+                <div class="text-secondary"><i class="fa fa-star text-secondary"></i> Highest contributor</div>
             </div>
-            <div class="underline"></div>
-            <div class="wall">
-                <div class="user-post">
-                    <span class="date"><p class="date">POSTED dd/mm/yy</p></span>
-                    <div class="text-post">
-                        <h2>Lorem Ipsum aptent taciti sociosqu ad</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur sociosqu ad adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce
-                            nec tellus sed augue semper porta. Ipsum dolor sit ame Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                        </p>
-                    </div>
-                    <div class="comment-line">
-                        <div id="wall-icons">
-                            <img src="./images/conversation.svg" height="20px">
-                            <img src="./images/heart.svg" height="20px">
-                        </div>
-                        <form class="comment">
-                            <input type="text" class="form-control" id="comment-pinned" name="comment-pinned" placeholder="Write comment...">
-                            <input type="text" value="POST" class="btn btn-secondary btn-sm lil-post">
-                        </form>
-                    </div>
-                </div>
-                <div class="user-post">
-                    <span class="date"><p class="date">POSTED dd/mm/yy</p></span>
-                    <div class="text-post">
-                        <h2>Pinned Post</h2>
-                        <p>Lorem ipsum dolor sit amet. At facilis quia quo consectetur deserunt qui rerum galisum. Id autem distinctio nam nulla internos qui provident dolores aut internos possimus.</p>
-                        <p>Consectetur adipiscing elit. Integer nec odio.</p>
-                        <p>At facilis quia quo consectetur deserunt qui rerum gali. Lorem ipsum dolor sit amet.Consectetur adipiscing elit. Integer nec odio.</p>
-                    </div>
-                    <div class="comment-line">
-                        <div id="wall-icons">
-                            <img src="./images/conversation.svg" height="20px">
-                            <img src="./images/heart.svg" height="20px">
-                        </div>
-                        <form class="comment">
-                            <input type="text" class="form-control" id="comment-pinned" name="comment-pinned" placeholder="Write comment...">
-                            <input type="text" value="POST" class="btn btn-secondary btn-sm lil-post">
-                        </form>
-                    </div>
-                </div>
+            <div class="col-auto align-self-center">
+                <span role="button" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-edit fs-3"></i></span>
             </div>
         </div>
+        <hr class="my-4 w-75 mx-auto" size="3">
     </main>
+
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="/profile" method="post">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Éditer le nom</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="name" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= data.name %>">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-secondary">Save</button>
+        </div>
+        </div>
+    </form>
+  </div>
+</div>

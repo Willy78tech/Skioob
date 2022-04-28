@@ -170,9 +170,15 @@ exports.spotEdit = (req, res) => {
 exports.spotInfo = (req, res) => {
 
     const token = res.app.locals.apiToken;
-
+    
     var spotId = req.params.id;
-
+    
+    var configSpot = {
+        method: 'get',
+        url: `http://ski-api.herokuapp.com/ski-spot/${spotId}`,
+        headers: {'Authorization': token}
+    };
+    
     apiController.getSpot(token, spotId)
           .then(spot => {
              apiController.getUserById(spot.data.skiSpot.created_by, token)

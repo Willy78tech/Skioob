@@ -4,12 +4,10 @@
         <input type="hidden" id="longitude" value="<%= spot.coordinates[1] %>">
     <% } %>
 
-    <main class="texture-background container-fluid">
+    <main class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-10 bg-light bg-opacity-50 rounded my-5 p-4">
-                <div class="form-title">
-                    <h1 class="text-center">Share your spot</h1>
-                </div>
+                <div class="h3 text-center text-secondary">Share your spot</div>
     
                 <form action="/spotform/<%= spot._id %>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">

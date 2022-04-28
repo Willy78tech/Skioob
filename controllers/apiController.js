@@ -46,6 +46,19 @@ exports.getUserById = (user_id, token) => {
     return axios(config);
 };
 
+exports.updateUser = (token, data) => {
+
+    var config = {
+        method: 'put',
+        url: 'https://ski-api.herokuapp.com/user',
+        headers: {'Authorization': token},
+        data : data
+        };
+
+    return axios(config);
+};
+
+
 exports.getAllSpots = (token) => {
 
     var config = {

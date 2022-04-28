@@ -6,7 +6,8 @@ const apiController = require('./apiController');
 //affiche la page d'inscription
 exports.signupPage = (req, res) => {
     res.render("signup", {
-        title: "Inscription"
+        title: "Inscription",
+        body_class: "start"
     });
 };
 
