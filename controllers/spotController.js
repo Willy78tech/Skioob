@@ -46,29 +46,28 @@ exports.spotFeed = async (req, res) => {
 
 //afficher la page pour ajouter un spot
 exports.spotFormAdd = (req, res) => {
-
     res.render("spotform", { title: "Ajouter le nouveau spot", spot: '' });
-
 };
 
 //afficher la page pour modifier un spot
-exports.spotFormEdit = (req, res) => {
+exports.spotFormEdit = async (req, res) => {
 
     const token = res.app.locals.apiToken;
 
     const spotId = req.params.id;
+    try {
 
-    apiController.getSpot(token, spotId)
-        .then(response => {
-            res.render("spotform", {
-                title: response.data.skiSpot.name,
-                spot: response.data.skiSpot,
-                page: req.params.page
-            });
-        })
-        .catch(error => {
-            res.render("error", { eMessage: error, title: "API erreur" });
-        });
+        const response = await apiController.getSpot(token, spotId);
+           
+                res.render("spotform", {
+                    title: response.data.skiSpot.name,
+                    spot: response.data.skiSpot,
+                    page: req.params.page
+                });
+    }       
+    catch(error) {
+        res.render("error", { eMessage: error, title: "API erreur" });
+    }
 };
 
 //on telecharge les fichiers et on retourne le nom du fichier
