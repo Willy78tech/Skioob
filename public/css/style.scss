@@ -1,0 +1,75 @@
+@import "../../node_modules/bootstrap/scss/functions";
+
+$primary: #002A2B;
+$secondary: #A14129;
+$enable-negative-margins: true;
+
+$list-group-bg: none;
+$list-group-border-color: none;
+$list-group-item-padding-y: 0.5rem;
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+.dropdown-toggle::after{
+    display: none;
+}
+
+*{
+    color: $primary;
+}
+
+/*------------- BODY-------------- */
+body{
+    font-family: "Poppins", sans-serif;
+    background-image: url("../images/background-texture.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+    &.start{
+        background-image: url("../images/background-image.jpg");
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $secondary;
+}
+
+.text-sunflower {
+    font-family: "made_sunflower";
+}
+
+footer{
+    font-size: 0.8rem;
+}
+
+/* ------------PAGE ERREUR-------------- */
+
+.error-message {
+    background-color: rgba(208, 215, 222, 0.7);
+    height: 400px;
+    min-width: 40%;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+/* ------------END PAGE ERREUR-------------- */
+
+.img-ratio{
+    object-fit: cover; 
+    object-position: center;
+}
+
+.thumb-post img,
+.galery img {
+    @extend .img-ratio;
+    max-height: 50px;
+    margin-bottom: 1rem;
+  }
+
+.galery img{
+    height: 100%;
+    max-height: initial;
+}
