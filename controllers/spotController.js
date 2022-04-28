@@ -15,27 +15,33 @@ const badge = (difficulty) => {
 };
 
 //fils d'actualité
-exports.spotFeed = (req, res) => {
+exports.spotFeed = async (req, res) => {
 
     const token = res.app.locals.apiToken;
 
     var page = req.params.page || 1;
     var perPage = 5;
 
-    apiController.getSpotsPerPage(token, page, perPage)
-        .then(response  => {
-            res.render('spotfeed', {
-                title: "Spot feed", 
-                skiSpots: response.data.skiSpots,
-                current: page,
-                pages: response.data.totalPages,
-                user: {name: 'William Garneau'}, // à venir
-                badge,
-                full: false}); // pas de description, pas de google map
-        })
-        .catch(error => {
-            res.render("error", {eMessage: error, title: "API erreur" });
+   try {
+        const response = await apiController.getSpot(token, null, page, perPage);
+        const skiSpots = response.data.skiSpots;
+        const total = response.data.total;
+        const current = response.data.current;
+        const pages = Math.ceil(total / perPage);
+
+        res.render("spotfeed", {
+            title: "Spot feed",
+            skispots: skiSpots,
+            page: page,
+            pages: pages,
+            total: total,
+            badge: badge
         });
+    }
+    catch(error) {
+        console.log(error);
+        res.render("error", {eMessage: error, title: "API erreur"});
+    }
 };
 
 //afficher la page pour ajouter un spot
@@ -46,22 +52,25 @@ exports.spotFormAdd = (req, res) => {
 };
 
 //afficher la page pour modifier un spot
-exports.spotFormEdit = (req, res) => {
+exports.spotFormEdit = async (req, res) => {
 
     const token = res.app.locals.apiToken;
 
     const spotId = req.params.id;
-
-    apiController.getSpot(token, spotId)    
-        .then(response => {
-            res.render("spotform", {
-                title : response.data.skiSpot.name, 
-                spot: response.data.skiSpot,
-                page: req.params.page});
-        })
-        .catch(error => {
-            res.render("error", {eMessage: error, title: "API erreur" });
-    });  
+try {
+    const response = await apiController.getSpot(token, spotId);
+    const spot = response.data.skiSpot;
+    const title = response.data.skiSpot.name;
+    const page = req.params.page;
+    res.render("spotform", {
+        title : title, 
+        spot: spot,
+        page: page
+});
+}
+catch(error) {
+    res.render("error", {eMessage: error, title: "API erreur"});
+    }
 };
 
 //on telecharge les fichiers et on retourne le nom du fichier
