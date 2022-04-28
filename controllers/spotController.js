@@ -15,27 +15,33 @@ const badge = (difficulty) => {
 };
 
 //fils d'actualité
-exports.spotFeed = (req, res) => {
+exports.spotFeed = async (req, res) => {
 
     const token = res.app.locals.apiToken;
-
+    
     var page = req.params.page || 1;
     var perPage = 5;
+    try {
 
-    apiController.getSpotsPerPage(token, page, perPage)
-        .then(response  => {
+        const response = await apiController.getSpotsPerPage(token, page, perPage);
+        const spots = response.data.skiSpots;
+        const total = response.data.total;
+        const pages = Math.ceil(total/perPage);
+        
             res.render('spotfeed', {
                 title: "Spot feed", 
-                skiSpots: response.data.skiSpots,
-                current: page,
-                pages: response.data.totalPages,
+                skiSpots: spots,
+                pages: pages,
+                total : total,
                 user: {name: 'William Garneau'}, // à venir
-                badge,
+                badge : badge,
                 full: false}); // pas de description, pas de google map
-        })
-        .catch(error => {
+        }
+       
+        catch(error) {
             res.render("error", {eMessage: error, title: "API erreur" });
-        });
+        }
+
 };
 
 //afficher la page pour ajouter un spot
@@ -95,43 +101,35 @@ const savePhoto = (files) => {
 };
 
 //sauvegarder les donnees
-exports.spotAdd = (req, res) => {
+exports.spotAdd = async (req, res) => {
 
     const token = res.app.locals.apiToken;
-
     const latitude = req.body.latitude;
     const longitude = req.body.longitude;
-
     let pictures = savePhoto(req.files);
-
-    axios.get(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${latitude}&lon=${longitude}`)
-        .then((coordinates) => {
-            var data = {
-                "name": req.body.name,
-                "description": req.body.description,
-                "coordinates": [req.body.latitude, req.body.longitude],
-                "difficulty": req.body.difficulty,
-                "address": coordinates.data.features[0].properties.geocoding.country + ', ' +
-                coordinates.data.features[0].properties.geocoding.postcode + ', ' +
-                coordinates.data.features[0].properties.geocoding.district + ', ' +
-                coordinates.data.features[0].properties.geocoding.street,
-                "pictures": pictures
-            };
-            apiController.saveSpot(token, data, 'post')    
-                .then(() => {
-                    res.redirect("/spotfeed/1");
-                })
-                .catch((error) => {
-                    res.render("error", {eMessage: error, title: "API erreur"});
-                }); 
-        })
-        .catch((error) => {
-            res.render("error", {eMessage: error,  title: "API address erreur" });
-        });
+    try {
+        const coordinates = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${latitude}&lon=${longitude}`);
+        var data = {
+            "name": req.body.name,
+            "description": req.body.description,
+            "coordinates": [req.body.latitude, req.body.longitude],
+            "difficulty": req.body.difficulty,
+            "address": coordinates.data.features[0].properties.geocoding.country + ', ' +
+            coordinates.data.features[0].properties.geocoding.postcode + ', ' +
+            coordinates.data.features[0].properties.geocoding.district + ', ' +
+            coordinates.data.features[0].properties.geocoding.street,
+            "pictures": pictures
+        };            
+        await apiController.saveSpot(token, data, 'post');  
+        res.redirect("/spotfeed/1");         
+    }
+        catch(error) {
+            res.render("error", {eMessage: error,  title: "API erreur" });
+        }
 };
 
 //modifier les donnees
-exports.spotEdit = (req, res) => {
+exports.spotEdit = async (req, res) => {
 
     const token = res.app.locals.apiToken;
 
@@ -142,28 +140,25 @@ exports.spotEdit = (req, res) => {
 
     let pictures = savePhoto(req.files);
 
-    axios.get(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${latitude}&lon=${longitude}`)
-        .then((coordinates) => {
-            var data = {
-                "name": req.body.name,
-                "description": req.body.description,
-                "coordinates": [req.body.latitude, req.body.longitude],
-                "address": JSON.stringify(coordinates.data.features[0].properties.geocoding.label),
-                "difficulty": req.body.difficulty,
-                "pictures": pictures
-            };
+    try {
+        const coordinates = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${latitude}&lon=${longitude}`);
 
-            apiController.saveSpot(token, data, 'put', spotId)
-                .then(() => {
-                    res.redirect("/spotfeed/1");
-                })
-                .catch((error) => {
-                    res.render("error", {eMessage: error,  title: "API erreur" });
-                });    
-        })
-        .catch((error) => {
-            res.render("error", {eMessage: error,  title: "API address erreur" });
-        });
+        var data = {
+            "name": req.body.name,
+            "description": req.body.description,
+            "coordinates": [req.body.latitude, req.body.longitude],
+            "address": JSON.stringify(coordinates.data.features[0].properties.geocoding.label),
+            "difficulty": req.body.difficulty,
+            "pictures": pictures
+        };
+
+        await apiController.saveSpot(token, data, 'put', spotId);
+            res.redirect("/spotfeed/1");
+    }             
+        
+    catch(error){
+        res.render("error", {eMessage: error,  title: "API address erreur" });
+    }
 };
 
 //afficher la page du spot
