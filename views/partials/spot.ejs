@@ -1,0 +1,70 @@
+<div class="container-fluid mt-5 mb-5">
+    <div class="row justify-content-center">
+        <% if(full) { %>
+            <div class="col-10">
+        <% } else { %>
+            <div class="col-lg-6 col-8">
+        <% } %>
+
+        <input type="hidden" id="latitude" value="<%= spot.coordinates[0] %>">
+        <input type="hidden" id="longitude" value="<%= spot.coordinates[1] %>">
+        
+            <div class="card p-3">
+                <div class="row justify-content-between p-2 px-3">
+                    <div class="col-auto thumb-post"> 
+                        <div class="row">
+                            <div class="col-auto">
+                                <img src="../images/profile-picture.jpg" width="50px" height="50px" class="rounded-circle mr-2">
+                            </div>
+                            <div class="col"> 
+                                <span class="font-weight-bold d-block"><%= user.name %></span> 
+                                <small class="text-primary">Administrateur</small> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto text-end"> 
+                        <small class="mr-2"><%= new Date(spot.created_at).toDateString() %></small> 
+                        
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle shadow-none" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-ellipsis-h"></i> 
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li><a href="/spotform/<%= spot._id %>" class="dropdown-item" ><i class="fa fa-edit"></i> Éditer</a></li>
+                                <li><a href="/delete/<%= spot._id %>" class="dropdown-item" ><i class="fa fa-trash-can"></i> Effacer</a></li>
+                            </ul>
+                            </div>
+                    </div>
+                </div> 
+                <div class="mb-3 text-center">
+                    <a class="h3 text-decoration-none" href="/spotinfo/<%= spot._id %>"><%= spot.name %></a>
+                </div>
+
+                <%- include('./galery.ejs', {pictures: Array.from(spot.pictures)}) %>
+
+                <div class="p-2">
+
+                    <div class="row">
+                        <% if(full) { %>
+                            <p><%= spot.description %></p>
+                        <% } else { %>
+                            <div class="col-11 text-truncate">
+                                <p><%= spot.description %></p>
+                                ... <a class="text-decoration-none" href="/spotinfo/<%= spot._id %>">Lire plus</a>
+                            </div>
+                        <% } %>
+                    </div>
+
+                    <div class="row justify-content-between mt-3">
+                        <div class="col-8">
+                            <p><i class="fa fa-location-dot text-secondary"></i> <%= spot.address %></p>
+                        </div>
+                        <div class="col-4 text-end">
+                            <span class="p-2 fs-5 badge bg-<%= badge(spot.difficulty) %>"><%= spot.difficulty %></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

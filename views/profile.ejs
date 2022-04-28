@@ -1,0 +1,39 @@
+    <main>
+        <div class="mx-auto w-75 mt-5">
+            <img src="../images/banner-picture.jpg" class="img-ratio rounded w-100" height="250" alt="">
+        </div>
+        <div class="row gx-0 justify-content-center mt-n5">
+            <div class="col-auto px-3 align-self-center"><img src="../images/profile-picture.jpg" class="rounded-circle img-ratio" width="250" height="250" alt=""></div>
+            <div class="col-auto px-3 align-self-center">
+                <h1 class="text-uppercase"><%= data.name%></h1>
+                <div class="text-secondary"><i class="fa fa-star text-secondary"></i> Highest contributor</div>
+            </div>
+            <div class="col-auto align-self-center">
+                <span role="button" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-edit fs-3"></i></span>
+            </div>
+        </div>
+        <hr class="my-4 w-75 mx-auto" size="3">
+    </main>
+
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="/profile" method="post">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Éditer le nom</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="name" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= data.name %>">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-secondary">Save</button>
+        </div>
+        </div>
+    </form>
+  </div>
+</div>
