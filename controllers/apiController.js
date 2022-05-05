@@ -105,3 +105,26 @@ exports.saveSpot = (token, data, method, spotId = '') => {
 
     return axios(config);
 };
+
+exports.getUsers = (token, query) => {
+    
+
+    var config = {
+        method: 'get',
+        url: `https://ski-api.herokuapp.com/users/search/${query}`,
+        headers: {'Authorization': token}
+    };
+
+    return axios(config);
+};
+
+exports.getFriends = (token) => {
+
+    var config = {
+        method: 'get',
+        url: `https://ski-api.herokuapp.com/friend`,
+        headers: {'Authorization': token}
+    };
+
+    return axios(config);
+};

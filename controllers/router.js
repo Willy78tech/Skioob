@@ -18,6 +18,8 @@ const authController = require("../controllers/authController");
 
 const profileController = require("../controllers/profileController");
 
+const usersController = require("../controllers/usersController");
+
 //connection
 
 router.get("/", connectionController.index);  //affiche la page de connection
@@ -51,6 +53,9 @@ router.post("/spotform", authController.ifTokenExists, spotController.spotAdd);
 router.get("/spotinfo/:id", authController.ifTokenExists, spotController.spotInfo);
 
 router.get('/delete/:id', authController.ifTokenExists, spotController.spotDelete);
+
+//route pour rechercher tous les utilisateurs
+router.post("/search", usersController.searchThroughUsers);
 
 //errors
 
