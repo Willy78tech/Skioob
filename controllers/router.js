@@ -22,19 +22,19 @@ const usersController = require("../controllers/usersController");
 
 //connection
 
-router.get("/", connectionController.index);  //affiche la page de connection
+router.get("/", connectionController.index); //affiche la page de connection
 
-router.post("/login", connectionController.connect);   //se connecte en utilisant API
+router.post("/login", connectionController.connect); //se connecte en utilisant API
 
 router.get("/signup", signupController.signupPage); //affiche la page d'inscription
 
-router.post("/signup", signupController.signup);   //crée un nouveau user en utilisant API
+router.post("/signup", signupController.signup); //crée un nouveau user en utilisant API
 
-router.get("/logout", logoutController.logout);    //efface les données de localstorage (serveur)
+router.get("/logout", logoutController.logout); //efface les données de localstorage (serveur)
 
 //profile
 
-router.get("/profile", authController.ifTokenExists, profileController.showProfile);   //si connecté, affiche la page profil
+router.get("/profile", authController.ifTokenExists, profileController.showProfile); //si connecté, affiche la page profil
 
 router.post("/profile", authController.ifTokenExists, profileController.editProfile);
 
@@ -55,7 +55,11 @@ router.get("/spotinfo/:id", authController.ifTokenExists, spotController.spotInf
 router.get('/delete/:id', authController.ifTokenExists, spotController.spotDelete);
 
 //route pour rechercher tous les utilisateurs
+router.get("/search", usersController.searchThroughUsers);
+
 router.post("/search", usersController.searchThroughUsers);
+
+router.get("/addFriend/:userId", usersController.addFriend);
 
 //errors
 
@@ -64,4 +68,3 @@ router.use(errorsController.respondExternalError);
 router.use(errorsController.respondNotFound);
 
 module.exports = router;
-

@@ -113,23 +113,35 @@ exports.saveSpot = (token, data, method, spotId = '') => {
 };
 
 exports.getUsers = (token, query) => {
-    
+
 
     var config = {
         method: 'get',
         url: `https://ski-api.herokuapp.com/users/search/${query}`,
-        headers: {'Authorization': token}
+        headers: { 'Authorization': token }
     };
 
     return axios(config);
 };
+
+
+exports.addFriend = (token, userId) => {
+    var config = {
+        method: 'post',
+        url: 'http://ski-api.herokuapp.com/friend',
+        headers: { 'Authorization': token },
+        data: { 'friendId': userId }
+    };
+    return axios(config);
+};
+
 
 exports.getFriends = (token) => {
 
     var config = {
         method: 'get',
         url: `https://ski-api.herokuapp.com/friend`,
-        headers: {'Authorization': token}
+        headers: { 'Authorization': token }
     };
 
     return axios(config);

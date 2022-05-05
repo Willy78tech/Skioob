@@ -4,32 +4,42 @@ const apiController = require('./apiController');
 const axios = require('axios');
 
 
- // rechercher tous les utilisateurs
+// rechercher tous les utilisateurs
 
- exports.searchThroughUsers = async (req, res) => {
+exports.searchThroughUsers = async(req, res) => {
 
-     const token = res.app.locals.apiToken;
-     const query = req.body.search;
+    const token = res.app.locals.apiToken;
+    var search = "";
+    if (req.body.search != undefined) {
+        search = req.body.search;
+        res.app.locals.search = search;
 
-     try {
+    } else
+        search = res.app.locals.search;
+    try {
+        const users = await apiController.getUsers(token, search);
+        const friends = await apiController.getFriends(token);
+        res.render('users', {
+            title: "Users",
+            users: users.data.users,
+            friends: friends.data.friends
+        });
+    } catch (error) {
+        res.render("error", { eMessage: error, title: "API erreur" });
+    }
+};
 
-         const users = await apiController.getUsers(token, query);
-         const friends = await apiController.getFriends(token);
-         console.log(friends.data);
-         res.render('users', {
-              title: "Users",
-              users: users.data.users, 
-              friends: friends.data.friends 
-         });
-         console.log(users.data.users);
-     }
-     catch(error) {
-         res.render("error", { eMessage: error, title: "API erreur" });
-     }
- }; 
+// ajouter un ami
 
- // rechercher mes amis
+exports.addFriend = async(req, res) => {
 
+    const token = res.app.locals.apiToken;
+    const userId = req.params.userId;
+    try {
+        await apiController.addFriend(token, userId);
+        res.redirect("/search");
+    } catch (error) {
+        res.render("error", { eMessage: error, title: "API erreur" });
+    }
 
-
-
+};
