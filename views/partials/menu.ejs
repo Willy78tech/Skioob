@@ -19,6 +19,17 @@
         <div class="col-8 text-center">
             <img src="../images/logo.png" alt="skioob-logo">
         </div>
+        <form class="input-group pe-3 w-25" action="/search" method="POST">
+            <input type="search" class="form-control" id="search" name="search" placeholder="Search users..." aria-label="Search docs for..." autocomplete="off" data-bd-docs-version="5.0">
+            <button id="loupe" class="btn btn-primary text-white fw-bold" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-search" viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                    </path>
+                </svg>
+            </button>
+        </form>
         <div class="col-2 text-end align-self-center">
             <a href="../spotfeed/1" class="px-2"> <img src="../images/forest.png" width="40" height="40" alt="mount icon"></a>
             <a href="../profile" class="px-2"><img src="../images/user.png" width="40" height="40" alt="user icon"></a>
