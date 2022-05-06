@@ -25,9 +25,9 @@ exports.spotFeed = async (req, res) => {
 
         const response = await apiController.getSpotsPerPage(token, page, perPage);
         const spots = response.data.skiSpots;
-        const total = response.data.total;
+        const total = response.data.totalPages;
         const pages = Math.ceil(total/perPage);
-        
+       
             res.render('spotfeed', {
                 title: "Spot feed", 
                 skiSpots: spots,
