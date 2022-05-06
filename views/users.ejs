@@ -16,10 +16,15 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-auto text-end">
-                                <a href="/addFriend/<%= user.id %>" class="btn btn-primary">Ajouter</a>
-
+                                <% if (friends.find(friend => friend.id === user.id)) { %>
+                                    <p><%= user.name %> is your friend</p>
+                                <% } else { %>
+                                    <a href="/addFriend/<%= user.id %>" class="btn btn-primary">Ajouter</a>
+                                <% } %>
                             </div>
+
                         </div>
                     </div>
 
