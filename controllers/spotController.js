@@ -24,17 +24,14 @@ exports.spotFeed = async (req, res) => {
     try {
 
         const response = await apiController.getSpotsPerPage(token, page, perPage);
-        const spots = response.data.skiSpots;
-        const total = response.data.total;
-        const pages = Math.ceil(total/perPage);
-        
+       
             res.render('spotfeed', {
                 title: "Spot feed", 
-                skiSpots: spots,
-                pages: pages,
-                total : total,
+                skiSpots: response.data.skiSpots,
+                current: page,
+                pages: response.data.totalPages,
                 user: {name: 'William Garneau'}, // à venir
-                badge : badge,
+                badge,
                 full: false}); // pas de description, pas de google map
         }
        

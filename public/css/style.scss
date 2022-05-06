@@ -2,6 +2,7 @@
 
 $primary: #002A2B;
 $secondary: #A14129;
+$info: #6c93ab;
 $enable-negative-margins: true;
 
 $list-group-bg: none;
@@ -10,10 +11,6 @@ $list-group-item-padding-y: 0.5rem;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
-
-.dropdown-toggle::after{
-    display: none;
-}
 
 *{
     color: $primary;
