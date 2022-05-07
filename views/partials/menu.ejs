@@ -25,15 +25,16 @@
                 <li><a href="/signup" class="btn btn-outline-secondary">Sign-up</a></li>
             
             <% } else { %>
-                <li><a href="../spotfeed/1" class="px-2"> <img src="../images/forest.png" width="40" height="40" alt="mount icon"></a></li>
-                <li><a href="../profile" class="px-2"><img src="../images/user.png" width="40" height="40" alt="user icon"></a></li>
+                <li><a href="/spotfeed/1" class="px-2"> <img src="../images/forest.png" width="40" height="40" alt="mount icon"></a></li>
+                <li><a href="/profile" class="px-2"><img src="../images/user.png" width="40" height="40" alt="user icon"></a></li>
                 <div class="dropdown align-self-center ms-2">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="https://github.com/mdo.png" alt="mdo" class="rounded-circle" width="32" height="32">
+                      <img src="../images/profile-picture.jpg" class="rounded-circle  img-ratio" width="32" height="32">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                      <li><a class="dropdown-item" href="#">New spot...</a></li>
-                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                      <li><a class="dropdown-item" href="/spotform">New spot...</a></li>
+                      <li><a class="dropdown-item" href="/spotfeed/1">All spots</a></li>
+                      <li><a class="dropdown-item" href="/profile">Profile</a></li>
                       <li><hr class="dropdown-divider"></li>
                       <li><a class="dropdown-item" href="/logout">Sign out</a></li>
                     </ul>

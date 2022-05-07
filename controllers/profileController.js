@@ -15,7 +15,9 @@ exports.showProfile = async(req, res) => {
             result.data.name
             );
 
-        res.render("profile", {title: "Mon profil", data: user});
+        const friends = await apiController.getFriends(token);
+
+        res.render("profile", {title: "Mon profil", data: user, friends: friends.data.friends});
     }
     catch(error) {
         res.render("error", {eMessage: error.response.data, title: "API erreur"});

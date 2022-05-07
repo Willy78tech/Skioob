@@ -2,33 +2,9 @@
     <div class="container-fluid mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-8">
-                <% users.forEach(user => { %>
-                    <div class="card p-3 mb-3">
-                        <div class="row justify-content-between p-2 px-3">
-                            <div class="col-auto thumb-post">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <img src="https://picsum.photos/id/237/200/300" width="50px" height="50px" class="rounded-circle mr-2">
-                                    </div>
-                                    <div class="col">
-                                        <span class="font-weight-bold d-block"><%= user.name %></span>
-                                        <small class="text-primary">Administrateur</small>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-auto text-end">
-                                <% if (friends.find(friend => friend.id === user.id)) { %>
-                                    <p><%= user.name %> is your friend</p>
-                                <% } else { %>
-                                    <a href="/addFriend/<%= user.id %>" class="btn btn-primary">Ajouter</a>
-                                <% } %>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <% }) %>
+                <% users.forEach((user, index) => { %>
+                    <%- include('./partials/user', {user, index, onlyFriends: false}) %>
+                <% }) %>
             </div>
         </div>
     </div>

@@ -18,13 +18,13 @@ const badge = (difficulty) => {
 exports.spotFeed = async (req, res) => {
 
     const token = res.app.locals.apiToken;
-    
+
     var page = req.params.page || 1;
     var perPage = 5;
     try {
 
         const response = await apiController.getSpotsPerPage(token, page, perPage);
-       
+
             res.render('spotfeed', {
                 title: "Spot feed", 
                 skiSpots: response.data.skiSpots,
