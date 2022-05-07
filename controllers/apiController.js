@@ -2,6 +2,15 @@
 
 var axios = require('axios');
 
+exports.status = () => {
+    var config = {
+        method: 'get',
+        url: 'https://ski-api.herokuapp.com/status',
+      };
+
+    return axios(config);
+};
+
 
 exports.login = (data) => {
     var config = {

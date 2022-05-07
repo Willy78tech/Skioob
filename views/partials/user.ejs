@@ -1,0 +1,27 @@
+<div class="card p-3 mb-3">
+    <div class="row justify-content-between p-2 px-3">
+        <div class="col-auto thumb-post">
+            <div class="row">
+                <div class="col-auto">
+                    <img src="https://loremflickr.com/320/240/man,woman?random=<%= index %>" width="50px" height="50px" class="rounded-circle mr-2">
+                </div>
+                <div class="col">
+                    <span class="font-weight-bold d-block"><%= user.name %></span>
+                    <small class="text-primary">Administrateur</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-auto text-end">
+            <% if (!onlyFriends) { %>
+                <% if (friends.find(friend => friend.id === user.id)) { %>
+                    <p><%= user.name %> is your friend</p>
+                <% } else { %>
+                    <a href="/addFriend/<%= user.id %>" class="btn btn-secondary">Ajouter</a>
+                <% } %>
+            <% } else { %>
+                <button type="submit" action="/addFriend/<%= user.id %>" class="btn btn-primary">Delete</button>
+            <% } %>
+        </div>
+    </div>
+</div>

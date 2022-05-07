@@ -14,8 +14,8 @@
     </div>
   
 
-    <% skiSpots.forEach(spot => { %>
-        <%- include('./partials/spot', {spot, badge}) %>
+    <% skiSpots.forEach((spot, index) => { %>
+        <%- include('./partials/spot', {spot, badge, index}) %>
     <% }) %>
 
 </main>

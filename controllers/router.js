@@ -24,42 +24,42 @@ const usersController = require("../controllers/usersController");
 
 router.get("/", connectionController.index); //affiche la page de connection
 
-router.post("/login", connectionController.connect); //se connecte en utilisant API
+router.post("/login", authController.APIStatus, connectionController.connect); //se connecte en utilisant API
 
 router.get("/signup", signupController.signupPage); //affiche la page d'inscription
 
-router.post("/signup", signupController.signup); //crée un nouveau user en utilisant API
+router.post("/signup", authController.APIStatus, signupController.signup); //crée un nouveau user en utilisant API
 
 router.get("/logout", logoutController.logout); //efface les données de localstorage (serveur)
 
 //profile
 
-router.get("/profile", authController.ifTokenExists, profileController.showProfile); //si connecté, affiche la page profil
+router.get("/profile", authController.APIStatus, authController.ifTokenExists, profileController.showProfile); //si connecté, affiche la page profil
 
-router.post("/profile", authController.ifTokenExists, profileController.editProfile);
+router.post("/profile", authController.APIStatus, authController.ifTokenExists, profileController.editProfile);
 
 //skiSpots
 
-router.get("/spotfeed/:page", authController.ifTokenExists, spotController.spotFeed);
+router.get("/spotfeed/:page", authController.APIStatus, authController.ifTokenExists, spotController.spotFeed);
 
-router.get("/spotform", spotController.spotFormAdd);
+router.get("/spotform", authController.APIStatus, spotController.spotFormAdd);
 
-router.get('/spotform/:id', authController.ifTokenExists, spotController.spotFormEdit);
+router.get('/spotform/:id', authController.APIStatus, authController.ifTokenExists, spotController.spotFormEdit);
 
-router.post('/spotform/:id', authController.ifTokenExists, spotController.spotEdit);
+router.post('/spotform/:id', authController.APIStatus, authController.ifTokenExists, spotController.spotEdit);
 
-router.post("/spotform", authController.ifTokenExists, spotController.spotAdd);
+router.post("/spotform", authController.APIStatus, authController.ifTokenExists, spotController.spotAdd);
 
-router.get("/spotinfo/:id", authController.ifTokenExists, spotController.spotInfo);
+router.get("/spotinfo/:id", authController.APIStatus, authController.ifTokenExists, spotController.spotInfo);
 
-router.get('/delete/:id', authController.ifTokenExists, spotController.spotDelete);
+router.get('/delete/:id', authController.APIStatus, authController.ifTokenExists, spotController.spotDelete);
 
 //route pour rechercher tous les utilisateurs
-router.get("/search", usersController.searchThroughUsers);
+router.get("/search", authController.APIStatus, usersController.searchThroughUsers);
 
-router.post("/search", usersController.searchThroughUsers);
+router.post("/search", authController.APIStatus, usersController.searchThroughUsers);
 
-router.get("/addFriend/:userId", usersController.addFriend);
+router.get("/addFriend/:userId", authController.APIStatus, usersController.addFriend);
 
 //errors
 
