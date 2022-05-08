@@ -6,7 +6,7 @@
                     <img src="https://loremflickr.com/320/240/man,woman?random=<%= index %>" width="50px" height="50px" class="rounded-circle mr-2">
                 </div>
                 <div class="col">
-                    <span class="font-weight-bold d-block"><%= user.name %></span>
+                    <span class="font-weight-bold d-block"><a href="/profile/<%=user.id%>"><%= user.name %></a></span>
                     <small class="text-primary">Administrateur</small>
                 </div>
             </div>
@@ -15,9 +15,9 @@
         <div class="col-auto text-end">
             <% if (!onlyFriends) { %>
                 <% if (friends.find(friend => friend.id === user.id)) { %>
-                    <p><%= user.name %> is your friend</p>
+                    <p class=" btn btn-success">Friend</p>
                 <% } else { %>
-                    <a href="/addFriend/<%= user.id %>" class="btn btn-secondary">Ajouter</a>
+                    <a href="/addFriend/<%= user.id %>" class="btn btn-secondary">Add as Friend</a>
                 <% } %>
             <% } else { %>
                 <button type="submit" action="/addFriend/<%= user.id %>" class="btn btn-primary">Delete</button>

@@ -38,6 +38,8 @@ router.get("/profile", authController.APIStatus, authController.ifTokenExists, p
 
 router.post("/profile", authController.APIStatus, authController.ifTokenExists, profileController.editProfile);
 
+router.get("/profile/:userId", authController.APIStatus, authController.ifTokenExists, profileController.showProfileFriend); 
+
 //skiSpots
 
 router.get("/spotfeed/:page", authController.APIStatus, authController.ifTokenExists, spotController.spotFeed);
@@ -60,6 +62,7 @@ router.get("/search", authController.APIStatus, usersController.searchThroughUse
 router.post("/search", authController.APIStatus, usersController.searchThroughUsers);
 
 router.get("/addFriend/:userId", authController.APIStatus, usersController.addFriend);
+
 
 //errors
 

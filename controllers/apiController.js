@@ -155,3 +155,12 @@ exports.getFriends = (token) => {
 
     return axios(config);
 };
+
+exports.getFriendsOfUser = (userId, token) => {
+    var config = {
+        method: 'get',
+        url: `https://ski-api.herokuapp.com/friend/${userId}`,
+        headers: { 'Authorization': token }
+    };
+    return axios(config);
+};
