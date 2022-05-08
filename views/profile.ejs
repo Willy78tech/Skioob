@@ -8,16 +8,18 @@
             <h1 class="text-uppercase"><%= data.name%></h1>
             <div class="text-secondary"><i class="fa fa-star text-secondary"></i> Highest contributor</div>
         </div>
-        <div class="col-auto align-self-center">
-            <span role="button" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-edit fs-3"></i></span>
-        </div>
+       <% if (self){ %>
+            <div class="col-auto align-self-center">
+                <span role="button" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-edit fs-3"></i></span>
+            </div>
+        <% } %>
     </div>
     <hr class="my-4 w-75 mx-auto" size="3">
 
     <div class="container-fluid mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-8">
-                <div class="h2 text-center mb-3">Yours friends</div>
+                <div class="h2 text-center mb-3">Friends</div>
                 <% friends.forEach((user, index) => { %>
                     <%- include('./partials/user', {user, index, onlyFriends: true}) %>
                 <% }) %>
@@ -25,26 +27,27 @@
         </div>
     </div>
 </main>
-
-<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form action="/profile" method="post">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel">Éditer le nom</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="mb-3">
-                <label for="name" class="col-form-label">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value="<%= data.name %>">
+<% if (self){ %>
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="/profile" method="post">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Éditer le nom</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-secondary">Save</button>
-        </div>
-        </div>
-    </form>
-  </div>
-</div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="name" class="col-form-label">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<%= data.name %>">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-secondary">Save</button>
+            </div>
+            </div>
+        </form>
+    </div>
+    </div>
+<% } %>
