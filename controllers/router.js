@@ -63,6 +63,8 @@ router.post("/search", authController.APIStatus, usersController.searchThroughUs
 
 router.get("/addFriend/:userId", authController.APIStatus, usersController.addFriend);
 
+router.get("/removeFriend/:userId", authController.APIStatus, usersController.removeFriend);
+
 
 //errors
 

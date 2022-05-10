@@ -36,14 +36,14 @@ exports.spotFeed = async (req, res) => {
         }
        
         catch(error) {
-            res.render("error", {eMessage: error, title: "API erreur" });
+            res.render("error", {eMessage: error, title: "API error" });
         }
 
 };
 
 //afficher la page pour ajouter un spot
 exports.spotFormAdd = (req, res) => {
-    res.render("spotform", { title: "Ajouter le nouveau spot", spot: '' });
+    res.render("spotform", { title: "Add New Spot", spot: '' });
 };
 
 //afficher la page pour modifier un spot
@@ -63,7 +63,7 @@ exports.spotFormEdit = async (req, res) => {
                 });
     }       
     catch(error) {
-        res.render("error", { eMessage: error, title: "API erreur" });
+        res.render("error", { eMessage: error, title: "API error" });
     }
 };
 
@@ -120,7 +120,7 @@ exports.spotAdd = async (req, res) => {
         res.redirect("/spotfeed/1");         
     }
         catch(error) {
-            res.render("error", {eMessage: error,  title: "API erreur" });
+            res.render("error", {eMessage: error,  title: "API error" });
         }
 };
 
@@ -153,7 +153,7 @@ exports.spotEdit = async (req, res) => {
     }             
         
     catch(error){
-        res.render("error", {eMessage: error,  title: "API address erreur" });
+        res.render("error", {eMessage: error,  title: "API address error" });
     }
 };
 
@@ -175,7 +175,7 @@ exports.spotInfo = async(req, res) => {
             full: true
         }); //afficher la description au complet
     } catch (error) {
-        res.render("error", { eMessage: error, title: "API erreur" });
+        res.render("error", { eMessage: error, title: "API error" });
     }
 };
 
@@ -190,6 +190,6 @@ exports.spotDelete = async(req, res) => {
         await apiController.saveSpot(token, null, 'delete', spotId);
         res.redirect('/spotfeed/1');
     } catch (error) {
-        res.render("error", { eMessage: error, title: "API erreur" });
+        res.render("error", { eMessage: error, title: "API error" });
     }
 };

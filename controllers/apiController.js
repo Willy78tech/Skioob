@@ -151,10 +151,25 @@ exports.getFriends = (token) => {
         method: 'get',
         url: `https://ski-api.herokuapp.com/friend`,
         headers: { 'Authorization': token }
+        
     };
 
     return axios(config);
 };
+
+
+exports.removeFriend = (token, userId) => {
+
+    var config = {
+        method: 'delete',
+        url: `https://ski-api.herokuapp.com/friend/${userId}`,
+        headers: { 'Authorization': token }
+    };
+
+    return axios(config);
+};
+
+
 
 exports.getFriendsOfUser = (userId, token) => {
     var config = {

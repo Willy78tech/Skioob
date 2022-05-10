@@ -30,8 +30,8 @@
                                 <i class="fa fa-ellipsis-h"></i> 
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <li><a href="/spotform/<%= spot._id %>" class="dropdown-item" ><i class="fa fa-edit"></i> Éditer</a></li>
-                                <li><a href="/delete/<%= spot._id %>" class="dropdown-item" ><i class="fa fa-trash-can"></i> Effacer</a></li>
+                                <li><a href="/spotform/<%= spot._id %>" class="dropdown-item" ><i class="fa fa-edit"></i> Édit</a></li>
+                                <li><a href="/delete/<%= spot._id %>" class="dropdown-item" ><i class="fa fa-trash-can"></i> Delete</a></li>
                             </ul>
                             </div>
                     </div>
@@ -50,7 +50,7 @@
                         <% } else { %>
                             <div class="col-11 text-truncate">
                                 <p><%= spot.description %></p>
-                                ... <a class="text-decoration-none" href="/spotinfo/<%= spot._id %>">Lire plus</a>
+                                ... <a class="text-decoration-none" href="/spotinfo/<%= spot._id %>">Read more</a>
                             </div>
                         <% } %>
                     </div>
@@ -60,7 +60,13 @@
                             <p><i class="fa fa-location-dot text-secondary"></i> <%= spot.address %></p>
                         </div>
                         <div class="col-4 text-end">
-                            <span class="p-2 fs-5 badge bg-<%= badge(spot.difficulty) %>"><%= spot.difficulty %></span>
+                            <% if (spot.difficulty == "facile") { %>
+                                <span class="p-2 fs-5 badge bg-<%= badge(spot.difficulty) %>">Easy</span>
+                            <% } else if (spot.difficulty == "intermédiaire") { %>
+                                <span class="p-2 fs-5 badge bg-<%= badge(spot.difficulty) %>">Intermediate</span>
+                            <% } else { %>
+                                <span class="p-2 fs-5 badge bg-<%= badge(spot.difficulty) %>">Hard</span>
+                            <% }; %>
                         </div>
                     </div>
                 </div>
