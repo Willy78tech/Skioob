@@ -19,7 +19,7 @@ exports.connect = async(req, res) => {
             res.redirect(`/spotfeed/1`);
         }
     } catch (error) {
-        res.render("error", { eMessage: "Vos données ne sont pas valides ", title: "API erreur" });
+        res.render("error", { eMessage: "The data is invalid", title: "API error" });
     }
 
 };
@@ -34,5 +34,5 @@ exports.index = (req, res) => {
         res.redirect("/profile");
     //si user n'est pas connecté, on affiche la page index avec un formulaire
     else
-        res.render("index", { title: "Bienvenue", body_class: "start" });
+        res.render("index", { title: "Welcome", body_class: "start" });
 };

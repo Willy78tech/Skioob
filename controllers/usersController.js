@@ -25,7 +25,7 @@ exports.searchThroughUsers = async(req, res) => {
             friends: friends.data.friends
         });
     } catch (error) {
-        res.render("error", { eMessage: error, title: "API erreur" });
+        res.render("error", { eMessage: error, title: "API error" });
     }
 };
 
@@ -39,7 +39,20 @@ exports.addFriend = async(req, res) => {
         await apiController.addFriend(token, userId);
         res.redirect("/search");
     } catch (error) {
-        res.render("error", { eMessage: error, title: "API erreur" });
+        res.render("error", { eMessage: error, title: "API error" });
     }
 
+};
+
+
+exports.removeFriend = async(req, res) => {
+    const token = res.app.locals.apiToken;
+    const userId = req.params.userId;
+    try {
+        await apiController.removeFriend(token, userId);
+        req.flash("msg", "Friend removed");
+        res.redirect("/profile");
+    } catch (error) {
+        res.render("error", { eMessage: error, title: "API error" });
+    }
 };

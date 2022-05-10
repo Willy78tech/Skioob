@@ -55,6 +55,6 @@ exports.showProfileFriend = async(req, res) => {
         res.render("profile", {title: user.name, data: user, friends: friends.data.friends, self: false});
     }
     catch(error) {
-        res.render("error", {eMessage: error.response.data, title: "API erreur"});
+        res.render("error", {eMessage: error.response.data, title: "API error"});
     }        
 };

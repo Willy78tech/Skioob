@@ -20,7 +20,7 @@
                     <a href="/addFriend/<%= user.id %>" class="btn btn-secondary">Add as Friend</a>
                 <% } %>
             <% } else { %>
-                <button type="submit" action="/addFriend/<%= user.id %>" class="btn btn-primary">Delete</button>
+                <a href="/removeFriend/<%= user.id %>" class="btn btn-primary">Delete</a>
             <% } %>
         </div>
     </div>

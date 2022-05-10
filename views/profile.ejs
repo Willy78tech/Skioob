@@ -1,4 +1,5 @@
 <main>
+    
     <div class="mx-auto w-75 mt-5">
         <img src="../images/banner-picture.jpg" class="img-ratio rounded w-100" height="250" alt="">
     </div>
@@ -19,6 +20,11 @@
     <div class="container-fluid mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-8">
+                <% if (!!flashMessages.msg) { %>
+                    <div class="alert alert-warning">
+                        <%= flashMessages.msg %>
+                    </div>
+                <% }; %>
                 <div class="h2 text-center mb-3">Friends</div>
                 <% friends.forEach((user, index) => { %>
                     <%- include('./partials/user', {user, index, onlyFriends: true}) %>
@@ -33,7 +39,7 @@
         <form action="/profile" method="post">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Éditer le nom</h5>
+                <h5 class="modal-title" id="modalLabel">Edit name</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

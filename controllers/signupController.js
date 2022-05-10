@@ -6,7 +6,7 @@ const apiController = require('./apiController');
 //affiche la page d'inscription
 exports.signupPage = (req, res) => {
     res.render("signup", {
-        title: "Inscription",
+        title: "Registration",
         body_class: "start"
     });
 };
@@ -21,10 +21,10 @@ exports.signup = async(req, res) => {
 
     try {
         await apiController.signup(user);
-        req.flash("connect_msg", "Bienvenue dans notre portail");
+        req.flash("connect_msg", "Welcome to Our Portal");
         //après avoir s'incrit, on va vers la page index pour se connecter
         res.redirect('/');
     } catch (error) {
-        res.render("error", { eMessage: error, title: "API erreur" });
+        res.render("error", { eMessage: error, title: "API error" });
     }
 };
