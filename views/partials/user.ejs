@@ -1,4 +1,4 @@
-<div class="card p-3 mb-3">
+<div class="card p-3 mb-4 position-relative">
     <div class="row justify-content-between p-2 px-3">
         <div class="col-auto thumb-post">
             <div class="row">
@@ -11,16 +11,24 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-auto text-end">
-            <% if (!onlyFriends) { %>
-                <% if (friends.find(friend => friend.id === user.id)) { %>
-                    <p class=" btn btn-success">Friend</p>
+            <%if (self) { %>
+                <% if (!onlyFriends) { %>
+                    <% if (friends.find(friend => friend.id === user.id)) { %>
+                        <a href="/removeFriend/search/<%= user.id %>" class="btn btn-primary">Remove</a>
+                    <% } else { %>
+                        <a href="/addFriend/search/<%= user.id %>" class="btn btn-secondary">Add as Friend</a>
+                    <% } %>
                 <% } else { %>
-                    <a href="/addFriend/<%= user.id %>" class="btn btn-secondary">Add as Friend</a>
+                    <a href="/removeFriend/profile/<%= user.id %>" class="btn btn-primary">Remove</a>
                 <% } %>
             <% } else { %>
-                <a href="/removeFriend/<%= user.id %>" class="btn btn-primary">Delete</a>
+                <% if (myFriends.find(friend => friend.id === user.id)) { %>
+                    <a href="/removeFriend/profile/<%= user.id %>" class="btn btn-primary">Remove</a>
+                <% } else { %>
+                    <a href="/addFriend/profile/<%= user.id %>" class="btn btn-secondary">Add as Friend</a>
+                <% } %>
             <% } %>
         </div>
     </div>

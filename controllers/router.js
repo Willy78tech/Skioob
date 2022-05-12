@@ -61,9 +61,9 @@ router.get("/search", authController.APIStatus, usersController.searchThroughUse
 
 router.post("/search", authController.APIStatus, usersController.searchThroughUsers);
 
-router.get("/addFriend/:userId", authController.APIStatus, usersController.addFriend);
+router.get("/addFriend/:page/:userId", authController.APIStatus, usersController.addFriend);
 
-router.get("/removeFriend/:userId", authController.APIStatus, usersController.removeFriend);
+router.get("/removeFriend/:page/:userId", authController.APIStatus, usersController.removeFriend);
 
 
 //errors

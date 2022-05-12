@@ -24,6 +24,7 @@ exports.showProfile = async(req, res) => {
     }        
 };
 
+//modifier le nom
 exports.editProfile = async(req, res) => {
 
     const token = res.app.locals.apiToken;
@@ -52,7 +53,15 @@ exports.showProfileFriend = async(req, res) => {
             );
 
         const friends = await apiController.getFriendsOfUser(userId, token);
-        res.render("profile", {title: user.name, data: user, friends: friends.data.friends, self: false});
+        const myFriends = await apiController.getFriends(token);
+
+        res.render("profile", {
+            title: user.name, 
+            data: user, 
+            friends: friends.data.friends, 
+            myFriends: myFriends.data.friends,
+            self: false
+        });
     }
     catch(error) {
         res.render("error", {eMessage: error.response.data, title: "API error"});

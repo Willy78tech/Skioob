@@ -2,6 +2,7 @@
 
 const apiController = require('./apiController');
 
+//middleware for all the function than need a user to be logged in
 exports.ifTokenExists = (req, res, next) => {
 
     const token = res.app.locals.apiToken;
@@ -12,6 +13,8 @@ exports.ifTokenExists = (req, res, next) => {
         next();
 };
 
+
+//verify if API works
 exports.APIStatus = async (req, res, next) => {
 
     try{
