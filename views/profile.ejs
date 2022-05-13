@@ -31,15 +31,19 @@
             <div class="col-lg-6 col-8">
                 <%- include('./partials/messages', {alert: "warning"}) %>
 
-                <% if(self) { %>
-                    <div class="h2 text-center mb-3">My friends</div>
-                <% } else { %>
-                    <div class="h2 text-center mb-3">Friends</div>
+                <% if(friends.length > 0) { %>
+                    <% if(self) { %>
+                        <div class="h2 text-center mb-3">My friends</div>
+                    <% } else { %>
+                        <div class="h2 text-center mb-3">Friends</div>
+                    <% } %>
+                    
+                    <% friends.forEach((user, index) => { %>
+                        <%- include('./partials/user', {user, index, onlyFriends: true}) %>
+                    <% }) %>
+
                 <% } %>
-                
-                <% friends.forEach((user, index) => { %>
-                    <%- include('./partials/user', {user, index, onlyFriends: true}) %>
-                <% }) %>
+
             </div>
         </div>
     </div>
