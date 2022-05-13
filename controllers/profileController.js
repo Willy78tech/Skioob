@@ -20,7 +20,7 @@ exports.showProfile = async(req, res) => {
         res.render("profile", {title: "Mon profil", data: user, friends: friends.data.friends, self: true});
     }
     catch(error) {
-        res.render("error", {eMessage: error.response.data, title: "API erreur"});
+        res.render("error", {eMessage: error.response.data.message, title: "API erreur"});
     }        
 };
 
@@ -36,7 +36,7 @@ exports.editProfile = async(req, res) => {
         res.redirect('/profile');
     }
     catch(error) {
-        res.render("error", {eMessage: error.response.data, title: "API erreur"});
+        res.render("error", {eMessage: error.response.data.message, title: "API erreur"});
     }
 };
 
@@ -64,6 +64,6 @@ exports.showProfileFriend = async(req, res) => {
         });
     }
     catch(error) {
-        res.render("error", {eMessage: error.response.data, title: "API error"});
+        res.render("error", {eMessage: error.response.data.message, title: "API error"});
     }        
 };
