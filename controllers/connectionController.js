@@ -33,6 +33,7 @@ exports.index = (req, res) => {
     if (!!token)
         res.redirect("/profile");
     //si user n'est pas connecté, on affiche la page index avec un formulaire
-    else
+    else{
         res.render("index", { title: "Welcome", body_class: "start" });
+    }
 };
