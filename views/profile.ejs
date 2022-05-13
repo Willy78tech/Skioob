@@ -18,11 +18,17 @@
             <h1 class="text-uppercase"><%= data.name%></h1>
             <div class="text-secondary"><i class="fa fa-star text-secondary"></i> Highest contributor</div>
         </div>
-       <% if (self){ %>
-            <div class="col-auto align-self-center">
+        <div class="col-auto align-self-center">
+            <% if (self){ %>
                 <span role="button" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa fa-edit fs-3"></i></span>
-            </div>
-        <% } %>
+            <% } else { %>
+                <% if (myFriends.find(friend => friend.id === userId)) { %>
+                    <a href="/removeFriend/profile/<%= userId %>" class="btn btn-primary">Remove</a>
+                <% } else { %>
+                    <a href="/addFriend/profile/<%= userId %>" class="btn btn-secondary">Add as Friend</a>
+                <% } %>
+            <% } %>
+        </div>
     </div>
     <hr class="my-4 w-75 mx-auto" size="3">
 

@@ -58,6 +58,7 @@ exports.showProfileFriend = async(req, res) => {
         res.render("profile", {
             title: user.name, 
             data: user, 
+            userId,
             friends: friends.data.friends, 
             myFriends: myFriends.data.friends,
             self: false
