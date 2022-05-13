@@ -20,8 +20,8 @@ exports.signup = async(req, res) => {
     );
 
     try {
-        await apiController.signup(user);
-        req.flash("connect_msg", "Welcome to Our Portal");
+        const res = await apiController.signup(user);
+        req.flash("msg", "Welcome to Our Portal");
         //après avoir s'incrit, on va vers la page index pour se connecter
         res.redirect('/');
     } catch (error) {

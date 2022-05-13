@@ -1,5 +1,5 @@
-<% if (!!flashMessages.connect_msg) { %>
-    <div class="alert alert-success">
-        <%= flashMessages.connect_msg %>
+<% if (!!flashMessages.msg) { %>
+    <div class="alert alert-<%= alert %> text-center">
+        <%= flashMessages.msg %>
     </div>
 <% } %>

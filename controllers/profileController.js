@@ -20,10 +20,11 @@ exports.showProfile = async(req, res) => {
         res.render("profile", {title: "Mon profil", data: user, friends: friends.data.friends, self: true});
     }
     catch(error) {
-        res.render("error", {eMessage: error.response.data, title: "API erreur"});
+        res.render("error", {eMessage: error.response.data.message, title: "API erreur"});
     }        
 };
 
+//modifier le nom
 exports.editProfile = async(req, res) => {
 
     const token = res.app.locals.apiToken;
@@ -35,7 +36,7 @@ exports.editProfile = async(req, res) => {
         res.redirect('/profile');
     }
     catch(error) {
-        res.render("error", {eMessage: error.response.data, title: "API erreur"});
+        res.render("error", {eMessage: error.response.data.message, title: "API erreur"});
     }
 };
 
@@ -52,9 +53,17 @@ exports.showProfileFriend = async(req, res) => {
             );
 
         const friends = await apiController.getFriendsOfUser(userId, token);
-        res.render("profile", {title: user.name, data: user, friends: friends.data.friends, self: false});
+        const myFriends = await apiController.getFriends(token);
+
+        res.render("profile", {
+            title: user.name, 
+            data: user, 
+            friends: friends.data.friends, 
+            myFriends: myFriends.data.friends,
+            self: false
+        });
     }
     catch(error) {
-        res.render("error", {eMessage: error.response.data, title: "API error"});
+        res.render("error", {eMessage: error.response.data.message, title: "API error"});
     }        
 };

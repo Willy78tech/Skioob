@@ -2,6 +2,7 @@
     <div class="container-fluid mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-8">
+                <%- include('./partials/messages', {alert: "warning"}) %>
                 <% users.forEach((user, index) => { %>
                     <%- include('./partials/user', {user, index, onlyFriends: false}) %>
                 <% }) %>
